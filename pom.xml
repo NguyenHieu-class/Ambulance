@@ -13,9 +13,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.project</groupId>
-	<artifactId>CarRental2</artifactId>
+    <artifactId>Ambulance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CarRental2</name>
+    <name>Ambulance</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
