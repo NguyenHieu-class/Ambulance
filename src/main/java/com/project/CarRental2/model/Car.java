@@ -1,11 +1,9 @@
-package com.project.CarRental2.model;
+package com.project.Ambulance.model;
 
 import java.util.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,9 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,54 +24,48 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Car {
-	public Car(int id_car) {
-		this.idCar=id_car;
-	}
+public class Ambulance {
+        public Ambulance(int id) {
+                this.id=id;
+        }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCar;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
 	@Column(columnDefinition = "nvarchar(50) not null")
-	private String nameCar;
+        private String name;
 
 	@Column(columnDefinition = "nvarchar(4000)")
-	private String overviewCar;
+        private String overview;
 
-	private int price;
-	private int promotionalPrice;
-	
-	@Column(columnDefinition = "int default 0")
-	private int oldPromotionalPrice;
+        // medical equipment
+        private int oxygenTanks;
+        private int mobileBeds;
+
+        @Column(columnDefinition = "nvarchar(2000)")
+        private String medications;
 
 	@Column(columnDefinition = "nvarchar(20)", unique = true)
-	private String licensePlates;
+        private String licensePlates;
 
-	private int modelYear;
-	private int status;
-	private boolean fuel; // true is gasoline flase is diesel;
-	// fuel for 100km
-	private float fuelFor100km;
-	// Quãng đường giao xe tối đa
-	private int maximumDeliveryDistance;
-	private int deliveryFeeFor1Km;
+        private int modelYear;
+        private int status;
 
-	// km tối đa trên ngày
-	private int maximumKilometersperDay;
-	private int limitCrossingfee1Km;
+        // other specifications
+        private int maximumKilometersperDay;
 
 	@Column(columnDefinition = "nvarchar(2000)")
-	private String polyUseCar;
+        private String notes;
 
 	@Column(columnDefinition = "nvarchar(1000)")
-	private String addressCar;
+        private String address;
 
 	@Column(columnDefinition = "nvarchar(200)")
-	private String avatarCar;
+        private String avatar;
 
 	@Column(columnDefinition = "nvarchar(2000)")
-	private String imageCar;
+        private String images;
 
 	
 	// số ghế ngồi
@@ -125,19 +115,8 @@ public class Car {
 	private Date updateDate;
 
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_brand")
-	@JsonIgnore
-	private BrandCar brandCar;
-	
-	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	@JsonIgnore
-	private List<Booking> booking;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_user")
-	@JsonIgnore
-	private User user;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "driver_id")
+        @JsonIgnore
+        private User driver;
 }
