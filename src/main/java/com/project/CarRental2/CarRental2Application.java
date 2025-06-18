@@ -1,4 +1,4 @@
-package com.project.CarRental2;
+package com.project.Ambulance;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@EnableWebSecurity
-public class CarRental2Application {
+public class AmbulanceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CarRental2Application.class, args);
-	}
+        public static void main(String[] args) {
+                SpringApplication.run(AmbulanceApplication.class, args);
+        }
 
 }

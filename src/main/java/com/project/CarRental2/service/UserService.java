@@ -1,19 +1,14 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.project.CarRental2.model.User;
+import com.project.Ambulance.model.User;
 
 public interface UserService {
-
-	void saveUser( User u);
-	List<User> getAllUser();
-	List<User> getAllUserOrderByUsername();
-	void deleteUser(int id);
-	User getAUser(int id_user);
-	void updateTotalMoney(int totalMoney, int idUser);
-	int countUser();
-	Optional<User> findUserByUserName(String username);
-	User getUserByIdCar(int idCar);
+    void saveUser(User user);
+    List<User> getAllUser();
+    User getUser(int id);
+    void deleteUser(int id);
+    Optional<User> findByUsername(String username);
 }
