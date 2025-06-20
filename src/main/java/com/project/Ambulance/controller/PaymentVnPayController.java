@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -22,19 +22,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.Booking;
-import com.project.CarRental2.model.DetailNotification;
-import com.project.CarRental2.model.Notification;
-import com.project.CarRental2.model.PaymentBill;
-import com.project.CarRental2.model.ResuftPayment;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.BookingService;
-import com.project.CarRental2.service.DetailNotificationService;
-import com.project.CarRental2.service.NotificationService;
-import com.project.CarRental2.service.PaymentBillService;
-import com.project.CarRental2.service.UserService;
-import com.project.CarRental2.vnpay.Config;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.Booking;
+import com.project.Ambulance.model.DetailNotification;
+import com.project.Ambulance.model.Notification;
+import com.project.Ambulance.model.PaymentBill;
+import com.project.Ambulance.model.ResuftPayment;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.BookingService;
+import com.project.Ambulance.service.DetailNotificationService;
+import com.project.Ambulance.service.NotificationService;
+import com.project.Ambulance.service.PaymentBillService;
+import com.project.Ambulance.service.UserService;
+import com.project.Ambulance.vnpay.Config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

@@ -1,13 +1,13 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.PaymentBillService;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.PaymentBillService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

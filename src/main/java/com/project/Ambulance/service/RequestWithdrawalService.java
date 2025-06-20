@@ -1,8 +1,8 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
-import com.project.CarRental2.model.RequestWithdrawal;
+import com.project.Ambulance.model.RequestWithdrawal;
 
 public interface RequestWithdrawalService {
 	void saveRequestWithdrawal( RequestWithdrawal reqWithdrawal);

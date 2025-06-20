@@ -1,4 +1,4 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

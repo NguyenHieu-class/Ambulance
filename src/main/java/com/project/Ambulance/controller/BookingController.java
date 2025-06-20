@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaSystemException;
@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.Booking;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.BookingService;
-import com.project.CarRental2.service.UserService;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.Booking;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.BookingService;
+import com.project.Ambulance.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

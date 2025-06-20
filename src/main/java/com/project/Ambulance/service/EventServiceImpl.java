@@ -1,12 +1,12 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.CarRental2.model.Event;
-import com.project.CarRental2.repository.EventRepository;
+import com.project.Ambulance.model.Event;
+import com.project.Ambulance.repository.EventRepository;
 
 @Service
 public class EventServiceImpl  implements EventService{

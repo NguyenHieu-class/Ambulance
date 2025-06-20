@@ -1,4 +1,4 @@
-package com.project.CarRental2.api;
+package com.project.Ambulance.api;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.CarRental2.model.Insurance;
-import com.project.CarRental2.service.InsuranceService;
-import com.project.CarRental2.service.UploadFile;
+import com.project.Ambulance.model.Insurance;
+import com.project.Ambulance.service.InsuranceService;
+import com.project.Ambulance.service.UploadFile;
 
 @CrossOrigin("*")
 @RestController
