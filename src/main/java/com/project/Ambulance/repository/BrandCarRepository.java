@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.project.CarRental2.model.Province;
+import com.project.CarRental2.model.BrandCar;
 
 @Repository
-public interface ProvinceRepository extends JpaRepository<Province, Integer> {
-	@Query(value =  "select * from Province order by name_Province asc", nativeQuery = true)
-	List<Province> findAllProvinceOrderbyName();
-
+public interface BrandCarRepository extends JpaRepository<BrandCar, Integer> {
+	@Query(value="select * from brand_car order by name_brand asc", nativeQuery = true)
+	List<BrandCar> getAllBrandCarOderByNameAsc();
 	long count();
+
 }

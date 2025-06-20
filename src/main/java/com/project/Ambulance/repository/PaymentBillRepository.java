@@ -1,7 +1,11 @@
-package com.project.Ambulance.repository;
+package com.project.CarRental2.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.project.Ambulance.model.PaymentBill;
+import org.springframework.stereotype.Repository;
 
+import com.project.CarRental2.model.PaymentBill;
+
+@Repository
 public interface PaymentBillRepository extends JpaRepository<PaymentBill, Integer> {
+
 }
