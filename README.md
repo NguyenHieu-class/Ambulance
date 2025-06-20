@@ -4,6 +4,8 @@ This project is a Spring Boot application for managing ambulance services. It de
 
 ## Building with Maven
 
+This project requires **Java 21** or later to compile and run.
+
 The repository includes the Maven wrapper (`mvnw`). Use it to build the project:
 
 ```bash
