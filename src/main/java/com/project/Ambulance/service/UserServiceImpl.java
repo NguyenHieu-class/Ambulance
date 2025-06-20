@@ -1,4 +1,4 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.repository.UserRepository;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService /*, UserDetailsService */ {

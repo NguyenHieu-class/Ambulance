@@ -1,4 +1,4 @@
-//package com.project.CarRental2.configuration;
+//package com.project.Ambulance.configuration;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.authentication.AuthenticationManager;
@@ -10,7 +10,7 @@
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //
-//import com.project.CarRental2.repository.UserRepository;
+//import com.project.Ambulance.repository.UserRepository;
 //
 //import lombok.RequiredArgsConstructor;
 //

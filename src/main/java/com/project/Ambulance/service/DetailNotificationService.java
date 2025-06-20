@@ -1,8 +1,8 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
-import com.project.CarRental2.model.DetailNotification;
+import com.project.Ambulance.model.DetailNotification;
 
 public interface DetailNotificationService {
 	void saveDetail(DetailNotification detailNoti);

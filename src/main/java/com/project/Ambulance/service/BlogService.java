@@ -1,8 +1,8 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
-import com.project.CarRental2.model.Blog;
+import com.project.Ambulance.model.Blog;
 
 public interface BlogService {
 	List<Blog> getAllBlog();

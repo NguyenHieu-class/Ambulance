@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.util.Date;
 
@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.RequestWithdrawal;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.DetailNotificationService;
-import com.project.CarRental2.service.NotificationService;
-import com.project.CarRental2.service.RequestWithdrawalService;
-import com.project.CarRental2.model.DetailNotification;
-import com.project.CarRental2.model.Notification;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.RequestWithdrawal;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.DetailNotificationService;
+import com.project.Ambulance.service.NotificationService;
+import com.project.Ambulance.service.RequestWithdrawalService;
+import com.project.Ambulance.model.DetailNotification;
+import com.project.Ambulance.model.Notification;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

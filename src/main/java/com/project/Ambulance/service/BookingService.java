@@ -1,9 +1,9 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.project.CarRental2.model.Booking;
+import com.project.Ambulance.model.Booking;
 
 public interface BookingService {
 	void saveBooking(Booking booking);

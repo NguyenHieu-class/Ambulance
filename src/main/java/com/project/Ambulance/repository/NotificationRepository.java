@@ -1,4 +1,4 @@
-package com.project.CarRental2.repository;
+package com.project.Ambulance.repository;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.project.CarRental2.model.Notification;
+import com.project.Ambulance.model.Notification;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Integer> {

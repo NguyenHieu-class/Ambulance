@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.Booking;
-import com.project.CarRental2.model.Car;
-import com.project.CarRental2.model.District;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.model.Ward;
-import com.project.CarRental2.service.BookingService;
-import com.project.CarRental2.service.CarService;
-import com.project.CarRental2.service.DetailNotificationService;
-import com.project.CarRental2.service.DistrictService;
-import com.project.CarRental2.service.WardService;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.Booking;
+import com.project.Ambulance.model.Car;
+import com.project.Ambulance.model.District;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.model.Ward;
+import com.project.Ambulance.service.BookingService;
+import com.project.Ambulance.service.CarService;
+import com.project.Ambulance.service.DetailNotificationService;
+import com.project.Ambulance.service.DistrictService;
+import com.project.Ambulance.service.WardService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

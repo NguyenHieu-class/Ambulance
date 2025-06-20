@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.util.Date;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.CarRental2.model.Insurance;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.InsuranceService;
-import com.project.CarRental2.service.UploadFile;
+import com.project.Ambulance.model.Insurance;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.InsuranceService;
+import com.project.Ambulance.service.UploadFile;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

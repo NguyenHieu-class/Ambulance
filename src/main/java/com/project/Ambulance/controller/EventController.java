@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.Car;
-import com.project.CarRental2.model.DetailNotification;
-import com.project.CarRental2.model.Event;
-import com.project.CarRental2.model.Notification;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.CarService;
-import com.project.CarRental2.service.DetailNotificationService;
-import com.project.CarRental2.service.EventService;
-import com.project.CarRental2.service.NotificationService;
-import com.project.CarRental2.service.UserService;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.Car;
+import com.project.Ambulance.model.DetailNotification;
+import com.project.Ambulance.model.Event;
+import com.project.Ambulance.model.Notification;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.CarService;
+import com.project.Ambulance.service.DetailNotificationService;
+import com.project.Ambulance.service.EventService;
+import com.project.Ambulance.service.NotificationService;
+import com.project.Ambulance.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

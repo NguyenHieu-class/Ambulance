@@ -1,4 +1,4 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

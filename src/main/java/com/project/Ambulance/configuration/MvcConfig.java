@@ -1,4 +1,4 @@
-package com.project.CarRental2.configuration;
+package com.project.Ambulance.configuration;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

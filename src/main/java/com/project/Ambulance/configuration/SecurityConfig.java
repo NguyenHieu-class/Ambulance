@@ -1,4 +1,4 @@
-//package com.project.CarRental2.configuration;
+//package com.project.Ambulance.configuration;
 //
 //import static org.springframework.security.config.Customizer.withDefaults;
 //

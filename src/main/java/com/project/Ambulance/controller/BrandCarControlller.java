@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.util.Date;
 
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.CarRental2.model.Blog;
-import com.project.CarRental2.model.BrandCar;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.service.BrandCarService;
+import com.project.Ambulance.model.Blog;
+import com.project.Ambulance.model.BrandCar;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.service.BrandCarService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

@@ -1,4 +1,4 @@
-package com.project.CarRental2.controller;
+package com.project.Ambulance.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.CarRental2.constants.FiledName;
-import com.project.CarRental2.model.BrandCar;
-import com.project.CarRental2.model.Car;
-import com.project.CarRental2.model.District;
-import com.project.CarRental2.model.Province;
-import com.project.CarRental2.model.User;
-import com.project.CarRental2.model.Ward;
-import com.project.CarRental2.service.BrandCarService;
-import com.project.CarRental2.service.CarService;
-import com.project.CarRental2.service.ProvinceService;
-import com.project.CarRental2.service.UploadFile;
-import com.project.CarRental2.service.UserService;
+import com.project.Ambulance.constants.FiledName;
+import com.project.Ambulance.model.BrandCar;
+import com.project.Ambulance.model.Car;
+import com.project.Ambulance.model.District;
+import com.project.Ambulance.model.Province;
+import com.project.Ambulance.model.User;
+import com.project.Ambulance.model.Ward;
+import com.project.Ambulance.service.BrandCarService;
+import com.project.Ambulance.service.CarService;
+import com.project.Ambulance.service.ProvinceService;
+import com.project.Ambulance.service.UploadFile;
+import com.project.Ambulance.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

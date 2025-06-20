@@ -1,4 +1,4 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.Date;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.CarRental2.model.Booking;
-import com.project.CarRental2.repository.BookingRepository;
+import com.project.Ambulance.model.Booking;
+import com.project.Ambulance.repository.BookingRepository;
 
 @Service
 public class BookingServiceImpl implements BookingService {

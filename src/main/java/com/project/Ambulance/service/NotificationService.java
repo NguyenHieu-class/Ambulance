@@ -1,8 +1,8 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
-import com.project.CarRental2.model.Notification;
+import com.project.Ambulance.model.Notification;
 
 public interface NotificationService {
 	List<Notification> getAllNotification();

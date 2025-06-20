@@ -1,4 +1,4 @@
-package com.project.CarRental2.constants;
+package com.project.Ambulance.constants;
 
 public interface FiledName {
 	public static final int ROLE_ADMIN = 1;

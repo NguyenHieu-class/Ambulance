@@ -1,12 +1,12 @@
-package com.project.CarRental2.service;
+package com.project.Ambulance.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.CarRental2.model.Notification;
-import com.project.CarRental2.repository.NotificationRepository;
+import com.project.Ambulance.model.Notification;
+import com.project.Ambulance.repository.NotificationRepository;
 
 @Service
 public class NotificationServiceImpl  implements NotificationService{
