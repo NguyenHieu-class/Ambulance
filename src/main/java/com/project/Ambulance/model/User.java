@@ -50,5 +50,11 @@ public class User {
     private Date createDate;
     private Date updateDate;
 
+    @ManyToOne
+    @JoinColumn(name = "id_role")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Role role;
+
 
 }
