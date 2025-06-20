@@ -37,3 +37,8 @@ The system defines three basic user roles:
 - **medical staff** – doctors or nurses participating in trips
 - **driver** – vehicle drivers
 
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
