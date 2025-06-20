@@ -42,10 +42,10 @@ public class User {
     private String dateOfBrith;
 
     @Column(columnDefinition = "nvarchar(20)")
-    private String License;
+    private String license;
 
     @Column(columnDefinition = "nvarchar(100)")
-    private String ImgLicense;
+    private String imgLicense;
 
     private Date createDate;
     private Date updateDate;
