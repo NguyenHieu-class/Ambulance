@@ -5,6 +5,9 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @Entity
 @Data
@@ -40,7 +43,14 @@ public class District {
     }
 
     public String convertJson() {
-        String result= "{\"idDistrict\":\""+idDistrict+"\",\"nameDistric\": \""+nameDistrict+"\"}";
-        return result;
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode node = mapper.createObjectNode();
+        node.put("idDistrict", idDistrict);
+        node.put("nameDistrict", nameDistrict);
+        try {
+            return mapper.writeValueAsString(node);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to convert to JSON", e);
+        }
     }
 }
