@@ -39,7 +39,7 @@ public class User {
     private String address;
 
     @Column(columnDefinition = "nvarchar(12)")
-    private String dateOfBrith;
+    private String dateOfBirth;
 
     @Column(columnDefinition = "nvarchar(20)")
     private String license;
