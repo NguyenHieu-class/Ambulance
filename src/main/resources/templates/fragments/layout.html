@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Layout</title>
+</head>
+<body>
+<div th:fragment="layout(content)">
+    <div th:insert="~{fragments/layout :: header}"></div>
+    <div class="container">
+        <div th:insert="~{fragments/layout :: sidebar}"></div>
+        <main>
+            <div th:replace="${content}"></div>
+        </main>
+    </div>
+    <div th:insert="~{fragments/layout :: footer}"></div>
+</div>
+
+<header th:fragment="header">
+    <h1>Ambulance Admin</h1>
+</header>
+
+<aside th:fragment="sidebar">
+    <p>Sidebar</p>
+</aside>
+
+<footer th:fragment="footer">
+    <p>&copy; 2024 Ambulance</p>
+</footer>
+</body>
+</html>
