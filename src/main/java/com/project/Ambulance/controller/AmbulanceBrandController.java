@@ -29,7 +29,7 @@ public class AmbulanceBrandController {
     @GetMapping
     public String listAmbulanceBrand(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("brandList", ambulanceBrandService.getAllAmbulanceBrand());
@@ -42,7 +42,7 @@ public class AmbulanceBrandController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("ambulanceBrand", new AmbulanceBrand());
@@ -56,7 +56,7 @@ public class AmbulanceBrandController {
     @GetMapping("/edit/{id}")
     public String showEditForm(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             AmbulanceBrand ambulanceBrand = ambulanceBrandService.getAmbulanceBrandById(id);
@@ -71,7 +71,7 @@ public class AmbulanceBrandController {
     @GetMapping("/delete/{id}")
     public String deleteAmbulanceBrand(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             ambulanceBrandService.deleteAmbulanceBrand(id);
@@ -87,7 +87,7 @@ public class AmbulanceBrandController {
                                      HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             AmbulanceBrand oldBrand = ambulanceBrandService.getAmbulanceBrandById(ambulanceBrand.getId());
