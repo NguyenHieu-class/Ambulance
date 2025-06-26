@@ -10,3 +10,7 @@ This project manages ambulances and related data using Spring Boot.
 4. After successful authentication you will be redirected to the admin dashboard at `/admin/dashboard`.
 
 The authenticated `User` object is stored in the HTTP session under the key `"sessionUser"`.
+
+## Lombok Setup
+
+This project relies on [Lombok](https://projectlombok.org/) for generating boilerplate code. Ensure your IDE has Lombok support enabled so that generated getters and other annotations work correctly during development.
