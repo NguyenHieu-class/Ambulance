@@ -4,8 +4,7 @@ import com.project.Ambulance.model.*;
 import com.project.Ambulance.service.*;
 import com.project.Ambulance.service.UploadFileService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,67 +36,44 @@ public class UserController {
 
     // Hiển thị danh sách tài khoản người dùng
     @GetMapping
-    public String listUsers(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sessionUser");
-
-        if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
-            model.addAttribute("users", userService.getAllUser());
-            return "admin/pages/user/list";
-        }
-        return "redirect:/login";
+    public String listUsers(Model model) {
+        model.addAttribute("users", userService.getAllUser());
+        return "admin/pages/user/list";
     }
 
     // Xóa tài khoản người dùng
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sessionUser");
-
-        if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
-            userService.deleteUser(id);
-            return "redirect:/admin/user";
-        }
-        return "redirect:/login";
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "redirect:/admin/user";
     }
 
     // Reset mật khẩu về mặc định
     @GetMapping("/reset-password/{id}")
-    public String resetPassword(@PathVariable("id") Long id, RedirectAttributes ra, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sessionUser");
-
-        if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
-            User user = userService.getUserById(id);
-            user.setPassword(passwordEncoder.encode("123"));
-            userService.saveUser(user);
-            ra.addFlashAttribute("messResetPass", "Reset mật khẩu thành công");
-            return "redirect:/admin/user";
-        }
-        return "redirect:/login";
+    public String resetPassword(@PathVariable("id") Long id, RedirectAttributes ra) {
+        User user = userService.getUserById(id);
+        user.setPassword(passwordEncoder.encode("123"));
+        userService.saveUser(user);
+        ra.addFlashAttribute("messResetPass", "Reset mật khẩu thành công");
+        return "redirect:/admin/user";
     }
 
     // ================= PHẦN CHO CHÍNH NGƯỜI DÙNG CẬP NHẬT THÔNG TIN ===================
 
     // Upload avatar mới
     @PostMapping("/upload-avatar")
-    public String uploadAvatar(HttpServletRequest request,
+    public String uploadAvatar(Principal principal,
                                @RequestParam("avatarImage") MultipartFile image) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-
-        if (user != null) {
-            uploadFileService.removeFile(user.getImage());
-            user.setImage(uploadFileService.uploadSingleFile(image));
-            userService.saveUser(user);
-            return "redirect:/edit-profile";
-        }
-        return "redirect:/login";
+        User user = userService.getUserByUsername(principal.getName());
+        uploadFileService.removeFile(user.getImage());
+        user.setImage(uploadFileService.uploadSingleFile(image));
+        userService.saveUser(user);
+        return "redirect:/edit-profile";
     }
 
     // Cập nhật thông tin cá nhân
     @PostMapping("/update-info")
-    public String updateUserInfo(HttpServletRequest request,
+    public String updateUserInfo(Principal principal,
                                  @RequestParam("nameDisplay") String nameDisplay,
                                  @RequestParam("dateOfBrith") String dateOfBrith,
                                  @RequestParam("sex") int sex,
@@ -105,72 +81,50 @@ public class UserController {
                                  @RequestParam("districtId") Long districtId,
                                  @RequestParam("wardId") Long wardId,
                                  @RequestParam("addressDetail") String addressDetail) {
+        User user = userService.getUserByUsername(principal.getName());
+        user.setNameDisplay(nameDisplay);
+        user.setDateOfBrith(dateOfBrith);
+        user.setSex(sex == 1 ? false : true);
 
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
+        Province province = provinceService.getProvinceById(provinceId);
+        District district = districtService.getDistrictById(districtId);
+        Ward ward = wardService.getWardById(wardId);
 
-        if (user != null) {
-            user.setNameDisplay(nameDisplay);
-            user.setDateOfBrith(dateOfBrith);
-            user.setSex(sex == 1 ? false : true);
-
-            Province province = provinceService.getProvinceById(provinceId);
-            District district = districtService.getDistrictById(districtId);
-            Ward ward = wardService.getWardById(wardId);
-
-            user.setAddress(addressDetail + ", " + ward.getName() + ", " + district.getName() + ", " + province.getName());
-            userService.saveUser(user);
-            return "redirect:/edit-profile";
-        }
-        return "redirect:/login";
+        user.setAddress(addressDetail + ", " + ward.getName() + ", " + district.getName() + ", " + province.getName());
+        userService.saveUser(user);
+        return "redirect:/edit-profile";
     }
 
     // Cập nhật số điện thoại
     @PostMapping("/update-phone")
-    public String updatePhone(HttpServletRequest request, @RequestParam("phone") String phone) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-
-        if (user != null) {
-            user.setPhone(phone);
-            userService.saveUser(user);
-            return "redirect:/edit-profile";
-        }
-        return "redirect:/login";
+    public String updatePhone(Principal principal, @RequestParam("phone") String phone) {
+        User user = userService.getUserByUsername(principal.getName());
+        user.setPhone(phone);
+        userService.saveUser(user);
+        return "redirect:/edit-profile";
     }
 
     // Cập nhật email
     @PostMapping("/update-email")
-    public String updateEmail(HttpServletRequest request, @RequestParam("email") String email) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-
-        if (user != null) {
-            user.setEmail(email);
-            userService.saveUser(user);
-            return "redirect:/edit-profile";
-        }
-        return "redirect:/login";
+    public String updateEmail(Principal principal, @RequestParam("email") String email) {
+        User user = userService.getUserByUsername(principal.getName());
+        user.setEmail(email);
+        userService.saveUser(user);
+        return "redirect:/edit-profile";
     }
 
     // Cập nhật bằng lái (driving license)
     @PostMapping("/update-driving-license")
-    public String updateDrivingLicense(HttpServletRequest request,
+    public String updateDrivingLicense(Principal principal,
                                        @RequestParam("drivingLicense") String drivingLicense,
                                        @RequestParam(name = "licenseImage", required = false) MultipartFile licenseImage) {
-
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-
-        if (user != null) {
-            user.setDrivingLicense(drivingLicense);
-            if (licenseImage != null && !licenseImage.isEmpty()) {
-                uploadFileService.removeFile(user.getImgDrivingLicense());
-                user.setImgDrivingLicense(uploadFileService.uploadSingleFile(licenseImage));
-            }
-            userService.saveUser(user);
-            return "redirect:/edit-profile";
+        User user = userService.getUserByUsername(principal.getName());
+        user.setDrivingLicense(drivingLicense);
+        if (licenseImage != null && !licenseImage.isEmpty()) {
+            uploadFileService.removeFile(user.getImgDrivingLicense());
+            user.setImgDrivingLicense(uploadFileService.uploadSingleFile(licenseImage));
         }
-        return "redirect:/login";
+        userService.saveUser(user);
+        return "redirect:/edit-profile";
     }
 }
