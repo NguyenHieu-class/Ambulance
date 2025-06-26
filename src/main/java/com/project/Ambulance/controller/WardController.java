@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/admin/ward")
@@ -105,10 +104,7 @@ public class WardController {
             Ward oldWard = wardService.getWardById(ward.getId());
             if (oldWard != null) {
                 ward.setCreateDate(oldWard.getCreateDate());
-            } else {
-                ward.setCreateDate(LocalDate.now());
             }
-            ward.setUpdateDate(LocalDate.now());
 
             ward.setDistrict(districtService.getDistrictById(districtId));
 

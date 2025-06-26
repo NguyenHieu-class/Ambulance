@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -94,10 +93,7 @@ public class MedicalStaffController {
             MedicalStaff oldStaff = medicalStaffService.getMedicalStaffById(medicalStaff.getId());
             if (oldStaff != null) {
                 medicalStaff.setCreateDate(oldStaff.getCreateDate());
-            } else {
-                medicalStaff.setCreateDate(LocalDate.now());
             }
-            medicalStaff.setUpdateDate(LocalDate.now());
 
             boolean exists = medicalStaffService.existsByUsername(medicalStaff.getUsername());
             if (exists && (oldStaff == null || !oldStaff.getUsername().equals(medicalStaff.getUsername()))) {

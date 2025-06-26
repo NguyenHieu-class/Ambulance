@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -94,10 +93,7 @@ public class DriverController {
             Driver oldDriver = driverService.getDriverById(driver.getId());
             if (oldDriver != null) {
                 driver.setCreateDate(oldDriver.getCreateDate());
-            } else {
-                driver.setCreateDate(LocalDate.now());
             }
-            driver.setUpdateDate(LocalDate.now());
 
             boolean exists = driverService.existsByUsername(driver.getUsername());
             if (exists && (oldDriver == null || !oldDriver.getUsername().equals(driver.getUsername()))) {

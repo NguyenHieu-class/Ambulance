@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -93,10 +92,7 @@ public class AmbulanceBrandController {
             AmbulanceBrand oldBrand = ambulanceBrandService.getAmbulanceBrandById(ambulanceBrand.getId());
             if (oldBrand != null) {
                 ambulanceBrand.setCreateDate(oldBrand.getCreateDate());
-            } else {
-                ambulanceBrand.setCreateDate(LocalDate.now());
             }
-            ambulanceBrand.setUpdateDate(LocalDate.now());
 
             // Kiểm tra tên thương hiệu đã tồn tại
             boolean exists = ambulanceBrandService.existsByBrandName(ambulanceBrand.getBrandName());

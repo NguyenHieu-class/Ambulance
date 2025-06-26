@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -82,7 +81,6 @@ public class AmbulanceController {
         }
 
         ambulance.setAmbulanceBrand(ambulanceBrandService.getAmbulanceBrandById(brandId));
-        ambulance.setCreateDate(LocalDate.now());
         ambulance.setStatus(Status.AVAILABLE); // Mặc định trạng thái ban đầu
 
         // Upload avatar (ảnh chính)

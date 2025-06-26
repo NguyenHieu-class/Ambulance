@@ -5,11 +5,15 @@ import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Entity đại diện cho thương hiệu xe cứu thương
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +28,9 @@ public class AmbulanceBrand {
     @Column(nullable = false, unique = true, length = 100)
     private String brandName; // Tên thương hiệu (VD: Ford, Toyota, Mercedes...)
 
+    @CreatedDate
     private LocalDate createDate; // Ngày tạo thương hiệu
+    @LastModifiedDate
     private LocalDate updateDate; // Ngày cập nhật thương hiệu
 
     /**

@@ -3,11 +3,15 @@ package com.project.Ambulance.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Entity đại diện cho nhân viên y tế trong hệ thống
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -48,6 +52,8 @@ public class MedicalStaff {
     @Column(length = 100)
     private String department; // Phòng ban / Khoa công tác
 
+    @CreatedDate
     private LocalDate createDate; // Ngày tạo
+    @LastModifiedDate
     private LocalDate updateDate; // Ngày cập nhật
 }
