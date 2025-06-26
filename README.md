@@ -40,3 +40,26 @@ mvn spring-boot:run
 
 The application will start on `http://localhost:8080/`.
 
+### Default Account
+
+When the application starts, a default administrator account is created
+automatically:
+
+- **Username**: `admin`
+- **Password**: `admin123`
+
+### Accessing the Application
+
+Navigating to `http://localhost:8080/` will redirect to the login page. After a
+successful login you will be taken to the dashboard.
+
+### Testing Login
+
+1. Start the application:
+   ```bash
+   mvn spring-boot:run
+   ```
+2. Open `http://localhost:8080/` in your browser.
+3. Log in with the default credentials `admin` / `admin123`.
+4. You should then see the dashboard page.
+
