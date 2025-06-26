@@ -1,5 +1,6 @@
 package com.project.Ambulance.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,12 +17,14 @@ import java.util.Random;
 public class UploadFileServiceImpl implements UploadFileService {
 
     private static final int LENGTH_MAX = 7;
-    private static final String UPLOAD_DIR = "uploads/";
+
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     @Override
     public String uploadSingleFile(MultipartFile file) {
         String fileName = "";
-        Path path = Paths.get(UPLOAD_DIR);
+        Path path = Paths.get(uploadDir);
         try {
             InputStream inputStream = file.getInputStream();
             String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -48,7 +51,7 @@ public class UploadFileServiceImpl implements UploadFileService {
 
     @Override
     public void removeFile(String nameFile) {
-        Path path = Paths.get(UPLOAD_DIR);
+        Path path = Paths.get(uploadDir);
         try {
             Files.deleteIfExists(path.resolve(nameFile));
         } catch (Exception e) {
@@ -59,7 +62,7 @@ public class UploadFileServiceImpl implements UploadFileService {
     @Override
     public String uploadFileDocument(MultipartFile file) {
         String fileName = file.getOriginalFilename().trim();
-        Path path = Paths.get(UPLOAD_DIR);
+        Path path = Paths.get(uploadDir);
         try {
             InputStream inputStream = file.getInputStream();
             Files.copy(inputStream, path.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
