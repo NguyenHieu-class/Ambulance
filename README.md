@@ -9,4 +9,4 @@ This project manages ambulances and related data using Spring Boot.
 3. Enter your username and password.
 4. After successful authentication you will be redirected to the admin dashboard at `/admin/dashboard`.
 
-The authenticated `User` object is stored in the HTTP session under the key `"sesionUser"`.
+The authenticated `User` object is stored in the HTTP session under the key `"sessionUser"`.

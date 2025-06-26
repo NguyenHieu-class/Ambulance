@@ -33,7 +33,7 @@ public class DistrictController {
     @GetMapping
     public String listDistricts(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("districts", districtService.getAllDistrict());
             model.addAttribute("provinces", provinceService.getAllProvince());
@@ -46,7 +46,7 @@ public class DistrictController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("district", new District());
             model.addAttribute("provinces", provinceService.getAllProvince());
@@ -60,7 +60,7 @@ public class DistrictController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             District district = districtService.getDistrictById(id);
             model.addAttribute("district", district);
@@ -75,7 +75,7 @@ public class DistrictController {
     @GetMapping("/delete/{id}")
     public String deleteDistrict(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             districtService.deleteDistrict(id);
             return "redirect:/admin/district";
@@ -91,7 +91,7 @@ public class DistrictController {
                                HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 
             District oldDistrict = districtService.getDistrictById(district.getId());

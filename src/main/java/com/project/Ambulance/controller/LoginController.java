@@ -30,7 +30,7 @@ public class LoginController {
         User user = userService.getUserByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("sesionUser", user);
+            session.setAttribute("sessionUser", user);
             return "redirect:/admin/dashboard";
         }
         model.addAttribute("error", "Sai thông tin đăng nhập");
