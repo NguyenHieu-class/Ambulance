@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/admin/district")
@@ -97,10 +96,7 @@ public class DistrictController {
             District oldDistrict = districtService.getDistrictById(district.getId());
             if (oldDistrict != null) {
                 district.setCreateDate(oldDistrict.getCreateDate());
-            } else {
-                district.setCreateDate(LocalDate.now());
             }
-            district.setUpdateDate(LocalDate.now());
 
             district.setProvince(provinceService.getProvinceById(provinceId));
 

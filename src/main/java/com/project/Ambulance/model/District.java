@@ -5,11 +5,15 @@ import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Quận / Huyện
  */
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +28,9 @@ public class District {
     @Column(nullable = false, length = 60)
     private String name; // Tên quận/huyện
 
+    @CreatedDate
     private LocalDate createDate;
+    @LastModifiedDate
     private LocalDate updateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -108,10 +107,7 @@ public class HospitalController {
             Hospital oldHospital = hospitalService.getHospitalById(hospital.getId());
             if (oldHospital != null) {
                 hospital.setCreateDate(oldHospital.getCreateDate());
-            } else {
-                hospital.setCreateDate(LocalDate.now());
             }
-            hospital.setUpdateDate(LocalDate.now());
 
             hospital.setProvince(provinceService.getProvinceById(provinceId));
             hospital.setDistrict(districtService.getDistrictById(districtId));

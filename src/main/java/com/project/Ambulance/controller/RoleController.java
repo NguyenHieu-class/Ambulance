@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -86,10 +85,7 @@ public class RoleController {
             Role oldRole = roleService.getRoleById(role.getId());
             if (oldRole != null) {
                 role.setCreateDate(oldRole.getCreateDate());
-            } else {
-                role.setCreateDate(LocalDate.now());
             }
-            role.setUpdateDate(LocalDate.now());
 
             boolean exists = roleService.existsByRoleName(role.getRoleName());
             if (exists && (oldRole == null || !oldRole.getRoleName().equals(role.getRoleName()))) {
