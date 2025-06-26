@@ -3,6 +3,7 @@ package com.project.Ambulance.controller;
 import com.project.Ambulance.model.*;
 import com.project.Ambulance.service.*;
 import com.project.Ambulance.service.UploadFileService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     private UploadFileService uploadFileService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // Hiển thị danh sách tài khoản người dùng
     @GetMapping
@@ -65,7 +69,7 @@ public class UserController {
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             User user = userService.getUserById(id);
-            user.setPassword("123"); // Tạm hard-code reset (sau này dùng bcrypt encoder chuẩn)
+            user.setPassword(passwordEncoder.encode("123"));
             userService.saveUser(user);
             ra.addFlashAttribute("messResetPass", "Reset mật khẩu thành công");
             return "redirect:/admin/user";
