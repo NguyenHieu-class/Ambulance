@@ -34,7 +34,7 @@ public class MaintenanceHistoryController {
     @GetMapping
     public String listMaintenanceHistories(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("histories", maintenanceHistoryService.getAllMaintenanceHistory());
@@ -47,7 +47,7 @@ public class MaintenanceHistoryController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("maintenanceHistory", new MaintenanceHistory());
@@ -62,7 +62,7 @@ public class MaintenanceHistoryController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             MaintenanceHistory history = maintenanceHistoryService.getMaintenanceHistoryById(id);
@@ -78,7 +78,7 @@ public class MaintenanceHistoryController {
     @GetMapping("/delete/{id}")
     public String deleteMaintenanceHistory(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             maintenanceHistoryService.deleteMaintenanceHistory(id);
@@ -95,7 +95,7 @@ public class MaintenanceHistoryController {
                                          HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 

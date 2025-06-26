@@ -29,7 +29,7 @@ public class RoleController {
     @GetMapping
     public String listRoles(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("roles", roleService.getAllRole());
             return "admin/pages/role/list";
@@ -41,7 +41,7 @@ public class RoleController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("role", new Role());
             model.addAttribute("action", "Thêm");
@@ -54,7 +54,7 @@ public class RoleController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             Role role = roleService.getRoleById(id);
             model.addAttribute("role", role);
@@ -68,7 +68,7 @@ public class RoleController {
     @GetMapping("/delete/{id}")
     public String deleteRole(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             roleService.deleteRole(id);
             return "redirect:/admin/role";
@@ -80,7 +80,7 @@ public class RoleController {
     @PostMapping("/save")
     public String saveRole(@ModelAttribute("role") Role role, RedirectAttributes ra, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 
             Role oldRole = roleService.getRoleById(role.getId());

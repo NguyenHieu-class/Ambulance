@@ -38,7 +38,7 @@ public class WardController {
     @GetMapping
     public String listWards(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("wards", wardService.getAllWard());
             model.addAttribute("districts", districtService.getAllDistrict());
@@ -52,7 +52,7 @@ public class WardController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("ward", new Ward());
             model.addAttribute("provinces", provinceService.getAllProvince());
@@ -67,7 +67,7 @@ public class WardController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             Ward ward = wardService.getWardById(id);
             model.addAttribute("ward", ward);
@@ -83,7 +83,7 @@ public class WardController {
     @GetMapping("/delete/{id}")
     public String deleteWard(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             wardService.deleteWard(id);
             return "redirect:/admin/ward";
@@ -99,7 +99,7 @@ public class WardController {
                            HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 
             Ward oldWard = wardService.getWardById(ward.getId());

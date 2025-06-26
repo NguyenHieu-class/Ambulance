@@ -39,7 +39,7 @@ public class AmbulanceLogController {
     @GetMapping
     public String listAmbulanceLogs(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("logs", ambulanceLogService.getAllAmbulanceLog());
@@ -52,7 +52,7 @@ public class AmbulanceLogController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("ambulanceLog", new AmbulanceLog());
@@ -68,7 +68,7 @@ public class AmbulanceLogController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             AmbulanceLog log = ambulanceLogService.getAmbulanceLogById(id);
@@ -85,7 +85,7 @@ public class AmbulanceLogController {
     @GetMapping("/delete/{id}")
     public String deleteAmbulanceLog(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             ambulanceLogService.deleteAmbulanceLog(id);
@@ -103,7 +103,7 @@ public class AmbulanceLogController {
                                    HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 
