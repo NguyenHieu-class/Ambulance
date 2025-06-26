@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+<body>
+<div th:fragment="content">
+    <div class="container py-5">
+        <h2 class="fw-bold mb-4 text-primary">Chào mừng bạn đến với Hệ thống quản lý xe cứu thương</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-ambulance fa-3x text-info mb-3"></i>
+                        <h5 class="card-title">Đặt xe cứu thương</h5>
+                        <p class="card-text">Tìm xe theo khu vực, bệnh viện, thời gian.</p>
+                        <a th:href="@{/ambulance/search}" class="btn btn-primary btn-sm">Tìm xe</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-user fa-3x text-warning mb-3"></i>
+                        <h5 class="card-title">Hồ sơ cá nhân</h5>
+                        <p class="card-text">Cập nhật thông tin cá nhân, tài khoản.</p>
+                        <a th:href="@{/my-profile}" class="btn btn-warning btn-sm">Xem hồ sơ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-history fa-3x text-success mb-3"></i>
+                        <h5 class="card-title">Lịch sử sử dụng</h5>
+                        <p class="card-text">Xem các chuyến xe bạn đã sử dụng trước đó.</p>
+                        <a th:href="@{/my-booking}" class="btn btn-success btn-sm">Xem lịch sử</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info mt-5">
+            <i class="fas fa-lightbulb"></i> Nếu bạn là tài xế hoặc nhân viên y tế, vui lòng kiểm tra các nhiệm vụ được phân công từ <strong>trang cá nhân</strong>.
+        </div>
+    </div>
+</div>
+</body>
+</html>

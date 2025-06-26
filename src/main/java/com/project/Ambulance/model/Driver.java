@@ -31,6 +31,9 @@ public class Driver {
     @Column(length = 100)
     private String profileImage; // Ảnh đại diện tài xế
 
+    @Column(length = 4)
+    private int yearsOfExperience; // Số năm kinh nghiệm
+
     @Column(length = 12)
     private String phone; // Số điện thoại
 
@@ -46,7 +49,7 @@ public class Driver {
     private boolean gender; // true: Nam, false: Nữ
 
     @Column(length = 20)
-    private String drivingLicense; // Số bằng lái xe
+    private String licenseNumber; // Số bằng lái xe
 
     @Column(length = 100)
     private String drivingLicenseImage; // Ảnh chụp bằng lái xe

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Nhật ký sử dụng xe cứu thương</h3>
+            <a th:href="@{/admin/ambulance-log/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Ghi nhận sử dụng
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Xe cứu thương</th>
+                    <th>Thời gian bắt đầu</th>
+                    <th>Thời gian kết thúc</th>
+                    <th>Quãng đường (km)</th>
+                    <th>Người điều khiển</th>
+                    <th>Ghi chú</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="log, iter : ${logs}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${log.ambulance.name}">Xe 01</td>
+                    <td th:text="${#dates.format(log.startTime, 'dd/MM/yyyy HH:mm')}">01/07/2025 08:00</td>
+                    <td th:text="${#dates.format(log.endTime, 'dd/MM/yyyy HH:mm')}">01/07/2025 10:30</td>
+                    <td th:text="${log.distance}">12</td>
+                    <td th:text="${log.driver.nameDisplay}">Nguyễn Văn Tài</td>
+                    <td th:text="${log.note}">Chuyển bệnh nhân cấp cứu</td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/ambulance-log/edit/' + ${log.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/ambulance-log/delete/' + ${log.id}}"
+                           onclick="return confirm('Bạn có chắc muốn xoá?');"
+                           class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(logs)}">
+                    <td colspan="8" class="text-center text-muted">Chưa có nhật ký nào được ghi nhận.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

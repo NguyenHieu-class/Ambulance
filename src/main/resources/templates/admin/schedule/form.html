@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4"
+            th:text="${schedule.id} != null ? 'Sửa lịch trực' : 'Thêm lịch trực mới'"></h3>
+
+        <form th:action="@{/admin/schedule/save}" th:object="${schedule}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Ngày trực</label>
+                    <input type="date" class="form-control" th:field="*{shiftDate}" required/>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Ca trực</label>
+                    <select class="form-select" th:field="*{shiftTime}" required>
+                        <option value="">-- Chọn ca --</option>
+                        <option value="Sáng">Sáng</option>
+                        <option value="Chiều">Chiều</option>
+                        <option value="Đêm">Đêm</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Trạng thái</label>
+                    <select class="form-select" th:field="*{status}">
+                        <option th:value="true">Đã hoàn thành</option>
+                        <option th:value="false">Chưa thực hiện</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Tài xế</label>
+                    <select class="form-select" th:field="*{driver.id}" required>
+                        <option value="">-- Chọn tài xế --</option>
+                        <option th:each="d : ${drivers}" th:value="${d.id}" th:text="${d.nameDisplay}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Nhân viên y tế</label>
+                    <select class="form-select" th:field="*{medicalStaff.id}" required>
+                        <option value="">-- Chọn NVYT --</option>
+                        <option th:each="s : ${medicalStaffs}" th:value="${s.id}" th:text="${s.nameDisplay}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Xe cứu thương</label>
+                    <select class="form-select" th:field="*{ambulance.id}" required>
+                        <option value="">-- Chọn xe --</option>
+                        <option th:each="a : ${ambulances}" th:value="${a.id}" th:text="${a.name}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/schedule}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

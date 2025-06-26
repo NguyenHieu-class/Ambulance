@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Danh sách người dùng</h3>
+            <a th:href="@{/admin/user/add}" class="btn btn-success">
+                <i class="fas fa-user-plus me-1"></i> Thêm người dùng
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Điện thoại</th>
+                    <th>Vai trò</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="u, iter : ${users}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${u.username}">admin</td>
+                    <td th:text="${u.nameDisplay}">Nguyễn Văn A</td>
+                    <td th:text="${u.email}">admin@example.com</td>
+                    <td th:text="${u.phone}">0123456789</td>
+                    <td th:text="${u.role.nameRole}">Admin</td>
+                    <td class="text-center">
+                        <img th:src="@{'/uploads/' + ${u.image}}" alt="Avatar"
+                             class="img-thumbnail" style="height: 40px; width: 40px; object-fit: cover;">
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/user/edit/' + ${u.idUser}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/user/delete/' + ${u.idUser}}"
+                           onclick="return confirm('Xoá người dùng này?');"
+                           class="btn btn-sm btn-danger me-1">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a th:href="@{'/admin/user/reset-password/' + ${u.idUser}}"
+                           class="btn btn-sm btn-secondary">
+                            <i class="fas fa-key"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(users)}">
+                    <td colspan="8" class="text-center text-muted">Chưa có người dùng nào.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

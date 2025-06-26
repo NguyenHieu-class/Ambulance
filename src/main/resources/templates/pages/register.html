@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản | Hệ thống xe cứu thương</title>
+    <link rel="stylesheet" th:href="@{/lib/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
+        <h3 class="text-center text-primary mb-4">Tạo tài khoản mới</h3>
+
+        <form th:action="@{/register}" method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Tên đăng nhập</label>
+                    <input type="text" name="username" class="form-control" required/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" required/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Họ và tên</label>
+                <input type="text" name="nameDisplay" class="form-control" required/>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" name="phone" class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Địa chỉ</label>
+                <input type="text" name="address" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh đại diện (tuỳ chọn)</label>
+                <input type="file" name="imageFile" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Bạn là?</label>
+                <select class="form-select" name="roleId" required>
+                    <option value="">-- Chọn vai trò --</option>
+                    <option value="2">Tài xế</option>
+                    <option value="3">Nhân viên y tế</option>
+                </select>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-1"></i> Đăng ký
+                </button>
+            </div>
+
+            <div class="text-center mt-3">
+                <a th:href="@{/login}" class="text-decoration-none small">Đã có tài khoản? Đăng nhập</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/lib/bootstrap/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/lib/fontawesome/all.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Danh sách bệnh viện</h3>
+            <a th:href="@{/admin/hospital/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Thêm bệnh viện
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-info text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên bệnh viện</th>
+                    <th>Zip Code</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Ngày tạo</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="hospital, iter : ${hospitals}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${hospital.name}">Bệnh viện Bạch Mai</td>
+                    <td th:text="${hospital.zipCode}">100000</td>
+                    <td class="text-center">
+                        <img th:src="@{'/uploads/' + ${hospital.imgProvince}}"
+                             class="img-thumbnail" style="width: 80px; height: auto;" alt="Ảnh bệnh viện">
+                    </td>
+                    <td th:text="${#dates.format(hospital.createDate, 'dd/MM/yyyy')}">25/06/2025</td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/hospital/edit/' + ${hospital.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/hospital/delete/' + ${hospital.id}}"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Bạn có chắc muốn xoá bệnh viện này?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(hospitals)}">
+                    <td colspan="6" class="text-center text-muted">Chưa có bệnh viện nào.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

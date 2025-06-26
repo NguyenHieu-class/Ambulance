@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Danh sách hãng xe cứu thương</h3>
+            <a th:href="@{/admin/ambulance-brand/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Thêm hãng mới
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên hãng</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày cập nhật</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="brand, iter : ${brands}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${brand.nameBrand}">Toyota</td>
+                    <td th:text="${#dates.format(brand.createDate, 'dd/MM/yyyy')}">01/07/2024</td>
+                    <td th:text="${#dates.format(brand.updateDate, 'dd/MM/yyyy')}">20/07/2024</td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/ambulance-brand/edit/' + ${brand.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/ambulance-brand/delete/' + ${brand.id}}"
+                           onclick="return confirm('Xoá hãng này?');"
+                           class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(brands)}">
+                    <td colspan="5" class="text-center text-muted">Chưa có hãng nào được thêm.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

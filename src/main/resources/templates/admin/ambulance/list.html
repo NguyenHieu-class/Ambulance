@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Danh sách xe cứu thương</h3>
+            <a th:href="@{/admin/ambulance/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Thêm xe mới
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-primary text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên xe</th>
+                    <th>Biển số</th>
+                    <th>Loại nhiên liệu</th>
+                    <th>Số ghế</th>
+                    <th>Trạng thái</th>
+                    <th>Tài xế</th>
+                    <th>Bệnh viện</th>
+                    <th>Ảnh</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ambulance, iterStat : ${ambulances}">
+                    <td th:text="${iterStat.index + 1}">1</td>
+                    <td th:text="${ambulance.name}">Tên xe</td>
+                    <td th:text="${ambulance.licensePlate}">29A-12345</td>
+                    <td th:text="${ambulance.fuelType}">Gasoline</td>
+                    <td th:text="${ambulance.numberOfSeats}">4</td>
+                    <td class="text-center">
+                        <span th:if="${ambulance.status}" class="badge bg-success">Hoạt động</span>
+                        <span th:if="${!ambulance.status}" class="badge bg-danger">Ngưng hoạt động</span>
+                    </td>
+                    <td th:text="${ambulance.driver != null ? ambulance.driver.nameDisplay : 'Chưa gán'}">Nguyễn Văn Tài</td>
+                    <td th:text="${ambulance.hospital != null ? ambulance.hospital.name : 'Chưa gán'}">Bệnh viện A</td>
+                    <td class="text-center">
+                        <img th:src="@{'/uploads/' + ${ambulance.avatarImage}}"
+                             alt="Ảnh xe" class="img-thumbnail" style="width: 80px; height: auto;">
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/ambulance/edit/' + ${ambulance.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/ambulance/delete/' + ${ambulance.id}}"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Bạn có chắc chắn muốn xoá xe này?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(ambulances)}">
+                    <td colspan="10" class="text-center text-muted">Không có xe cứu thương nào.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4" th:text="${hospital.id} != null ? 'Sửa bệnh viện' : 'Thêm bệnh viện mới'"></h3>
+
+        <form th:action="@{/admin/hospital/save}" th:object="${hospital}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Tên bệnh viện</label>
+                <input type="text" class="form-control" th:field="*{name}" required placeholder="Nhập tên bệnh viện"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mã vùng (Zip Code)</label>
+                <input type="number" class="form-control" th:field="*{zipCode}" required placeholder="VD: 700000"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control" name="image" accept="image/*"/>
+                <div th:if="*{imgProvince}" class="mt-2">
+                    <img th:src="@{'/uploads/' + *{imgProvince}}" class="img-thumbnail" style="width: 120px;" alt="Ảnh bệnh viện">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/hospital}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

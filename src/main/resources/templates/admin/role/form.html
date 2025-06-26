@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4"
+            th:text="${role.idRole != null ? 'Sửa vai trò' : 'Thêm vai trò mới'}"></h3>
+
+        <form th:action="@{/admin/role/save}" th:object="${role}" method="post">
+            <input type="hidden" th:field="*{idRole}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Tên vai trò</label>
+                <input type="text" class="form-control" th:field="*{nameRole}" required/>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/role}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

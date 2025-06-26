@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4"
+            th:text="${driver.id} != null ? 'Sửa thông tin tài xế' : 'Thêm tài xế mới'"></h3>
+
+        <form th:action="@{/admin/driver/save}" th:object="${driver}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Họ tên</label>
+                    <input type="text" class="form-control" th:field="*{nameDisplay}" required/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" th:field="*{phone}" required/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Giới tính</label>
+                    <select class="form-select" th:field="*{sex}">
+                        <option th:value="true">Nam</option>
+                        <option th:value="false">Nữ</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Ngày sinh</label>
+                    <input type="text" class="form-control" th:field="*{dateOfBrith}" placeholder="dd/MM/yyyy"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Trạng thái</label>
+                    <select class="form-select" th:field="*{status}">
+                        <option th:value="true">Đang hoạt động</option>
+                        <option th:value="false">Tạm ngưng</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Giấy phép lái xe</label>
+                <input type="text" class="form-control" th:field="*{drivingLicense}" required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control" name="avatar"/>
+                <div th:if="*{image}" class="mt-2">
+                    <img th:src="@{'/uploads/' + *{image}}" class="img-thumbnail" style="width: 100px;"/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh GPLX</label>
+                <input type="file" class="form-control" name="imageLicense"/>
+                <div th:if="*{imgDrivingLicense}" class="mt-2">
+                    <img th:src="@{'/uploads/' + *{imgDrivingLicense}}" class="img-thumbnail" style="width: 100px;"/>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/driver}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

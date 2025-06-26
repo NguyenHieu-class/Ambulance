@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Danh sách tài xế</h3>
+            <a th:href="@{/admin/driver/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Thêm tài xế
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-info text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên tài xế</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Giấy phép lái xe</th>
+                    <th>Ảnh đại diện</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="driver, iter : ${drivers}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${driver.nameDisplay}">Nguyễn Văn A</td>
+                    <td th:text="${driver.phone}">0988123456</td>
+                    <td th:text="${driver.email}">a@example.com</td>
+                    <td th:text="${driver.drivingLicense}">B2-123456</td>
+                    <td class="text-center">
+                        <img th:src="@{'/uploads/' + ${driver.image}}"
+                             class="img-thumbnail" style="width: 60px;" alt="avatar"/>
+                    </td>
+                    <td>
+                        <span th:if="${driver.status}" class="badge bg-success">Đang hoạt động</span>
+                        <span th:if="${!driver.status}" class="badge bg-secondary">Tạm ngưng</span>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/driver/edit/' + ${driver.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/driver/delete/' + ${driver.id}}"
+                           onclick="return confirm('Xoá tài xế này?');"
+                           class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(drivers)}">
+                    <td colspan="8" class="text-center text-muted">Chưa có tài xế nào trong hệ thống.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

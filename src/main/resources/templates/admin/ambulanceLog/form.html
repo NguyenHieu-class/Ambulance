@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4"
+            th:text="${log.id} != null ? 'Sửa nhật ký sử dụng' : 'Thêm nhật ký sử dụng'"></h3>
+
+        <form th:action="@{/admin/ambulance-log/save}" th:object="${log}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Thời gian bắt đầu</label>
+                    <input type="datetime-local" class="form-control" th:field="*{startTime}" required/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Thời gian kết thúc</label>
+                    <input type="datetime-local" class="form-control" th:field="*{endTime}" required/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Quãng đường (km)</label>
+                    <input type="number" class="form-control" th:field="*{distance}" required/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Xe cứu thương</label>
+                    <select class="form-select" th:field="*{ambulance.id}" required>
+                        <option value="">-- Chọn xe --</option>
+                        <option th:each="a : ${ambulances}" th:value="${a.id}" th:text="${a.name}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Tài xế</label>
+                    <select class="form-select" th:field="*{driver.id}" required>
+                        <option value="">-- Chọn tài xế --</option>
+                        <option th:each="d : ${drivers}" th:value="${d.id}" th:text="${d.nameDisplay}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ghi chú</label>
+                <textarea class="form-control" th:field="*{note}" rows="3"
+                          placeholder="Nhập thông tin mô tả chuyến đi..."></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/ambulance-log}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

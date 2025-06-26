@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <h3 class="fw-bold text-primary mb-4"
+            th:text="${user.idUser} != null ? 'Sửa thông tin người dùng' : 'Thêm người dùng mới'"></h3>
+
+        <form th:action="@{/admin/user/save}" th:object="${user}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{idUser}"/>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Tên đăng nhập</label>
+                    <input type="text" class="form-control" th:field="*{username}" required/>
+                </div>
+                <div class="col-md-4" th:if="${user.idUser == null}">
+                    <label class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" th:field="*{password}" required/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Vai trò</label>
+                    <select class="form-select" th:field="*{role.idRole}" required>
+                        <option value="">-- Chọn vai trò --</option>
+                        <option th:each="r : ${roles}" th:value="${r.idRole}" th:text="${r.nameRole}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Họ tên</label>
+                    <input type="text" class="form-control" th:field="*{nameDisplay}" required/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" th:field="*{phone}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}"/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Ngày sinh</label>
+                    <input type="text" class="form-control" th:field="*{dateOfBrith}" placeholder="dd/MM/yyyy"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Giới tính</label>
+                    <select class="form-select" th:field="*{sex}">
+                        <option th:value="true">Nam</option>
+                        <option th:value="false">Nữ</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" th:field="*{address}"/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control" name="imageFile"/>
+                <div th:if="${user.image != null}" class="mt-2">
+                    <img th:src="@{'/uploads/' + ${user.image}}" class="img-thumbnail" style="height: 80px;">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">GPLX</label>
+                <input type="text" class="form-control" th:field="*{drivingLicense}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh GPLX</label>
+                <input type="file" class="form-control" name="imageGPLX"/>
+                <div th:if="${user.imgDrivingLicense != null}" class="mt-2">
+                    <img th:src="@{'/uploads/' + ${user.imgDrivingLicense}}" class="img-thumbnail" style="height: 80px;">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <a th:href="@{/admin/user}" class="btn btn-secondary me-2">Quay lại</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

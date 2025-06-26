@@ -1,0 +1,43 @@
+<div th:fragment="sidebar">
+    <div class="list-group list-group-flush border-end">
+        <a class="list-group-item list-group-item-action bg-primary text-white fw-bold" disabled>
+            <i class="fas fa-bars me-2"></i> MENU
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/dashboard}">
+            <i class="fas fa-tachometer-alt me-2"></i> Trang tổng quan
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/ambulance}">
+            <i class="fas fa-ambulance me-2"></i> Quản lý xe cứu thương
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/driver}">
+            <i class="fas fa-user-nurse me-2"></i> Quản lý tài xế
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/medical-staff}">
+            <i class="fas fa-user-md me-2"></i> Nhân viên y tế
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/hospital}">
+            <i class="fas fa-hospital me-2"></i> Quản lý bệnh viện
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/schedule}">
+            <i class="fas fa-calendar-alt me-2"></i> Lịch trực
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/maintenance}">
+            <i class="fas fa-tools me-2"></i> Bảo trì xe
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/user}">
+            <i class="fas fa-users-cog me-2"></i> Người dùng
+        </a>
+
+        <a class="list-group-item list-group-item-action" th:href="@{/admin/role}">
+            <i class="fas fa-user-shield me-2"></i> Phân quyền
+        </a>
+    </div>
+</div>

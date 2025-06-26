@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(~{::body})">
+
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-primary">Lịch trực</h3>
+            <a th:href="@{/admin/schedule/add}" class="btn btn-success">
+                <i class="fas fa-plus-circle me-1"></i> Thêm lịch trực
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light text-center">
+                <tr>
+                    <th>STT</th>
+                    <th>Ngày</th>
+                    <th>Ca trực</th>
+                    <th>Tài xế</th>
+                    <th>Nhân viên y tế</th>
+                    <th>Xe cứu thương</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="schedule, iter : ${schedules}">
+                    <td th:text="${iter.index + 1}">1</td>
+                    <td th:text="${#dates.format(schedule.shiftDate, 'dd/MM/yyyy')}">01/07/2025</td>
+                    <td th:text="${schedule.shiftTime}">Sáng</td>
+                    <td th:text="${schedule.driver.nameDisplay}">Nguyễn Văn Tài</td>
+                    <td th:text="${schedule.medicalStaff.nameDisplay}">Trần Thị Hằng</td>
+                    <td th:text="${schedule.ambulance.name}">Xe cứu thương 01</td>
+                    <td class="text-center">
+                        <span th:if="${schedule.status}" class="badge bg-success">Đã hoàn thành</span>
+                        <span th:if="${!schedule.status}" class="badge bg-warning text-dark">Chưa thực hiện</span>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/schedule/edit/' + ${schedule.id}}" class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{'/admin/schedule/delete/' + ${schedule.id}}"
+                           onclick="return confirm('Bạn có chắc muốn xoá?');"
+                           class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(schedules)}">
+                    <td colspan="8" class="text-center text-muted">Chưa có lịch trực nào.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
