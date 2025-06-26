@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{pages/layout/header-css-js :: header-css-js}">
+    <title>Danh sách xe cứu thương</title>
+</head>
+<body>
+<nav th:replace="~{pages/layout/header :: header}"></nav>
+<div class="container mt-4">
+    <h2>Danh sách xe cứu thương</h2>
+    <a class="btn btn-primary mb-3" th:href="@{/ambulances/add}">Thêm mới</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Biển số</th>
+            <th>Tên xe</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="a : ${ambulances}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.licensePlate}"></td>
+            <td th:text="${a.name}"></td>
+            <td th:text="${a.status}"></td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{'/ambulances/edit/' + ${a.id}}">Sửa</a>
+                <a class="btn btn-sm btn-danger" th:href="@{'/ambulances/delete/' + ${a.id}}">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="~{pages/layout/footer :: footer}"></footer>
+</body>
+</html>

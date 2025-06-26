@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Nhật ký vận hành</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3 th:text="${action} + ' nhật ký'"></h3>
+        <form th:action="@{/admin/ambulance-log/save}" th:object="${ambulanceLog}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label class="form-label">Thời gian bắt đầu</label>
+                <input type="datetime-local" class="form-control" th:field="*{tripStart}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Thời gian kết thúc</label>
+                <input type="datetime-local" class="form-control" th:field="*{tripEnd}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Quãng đường (km)</label>
+                <input type="number" step="0.1" class="form-control" th:field="*{distanceTraveled}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ghi chú</label>
+                <textarea class="form-control" th:field="*{notes}"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Xe</label>
+                <select class="form-select" name="ambulanceId">
+                    <option th:each="a : ${ambulances}" th:value="${a.id}" th:text="${a.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tài xế</label>
+                <select class="form-select" name="driverId">
+                    <option th:each="d : ${drivers}" th:value="${d.id}" th:text="${d.fullName}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a th:href="@{/admin/ambulance-log}" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

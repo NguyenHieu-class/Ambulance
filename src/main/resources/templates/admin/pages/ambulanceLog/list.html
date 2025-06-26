@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Nhật ký vận hành</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3>Nhật ký vận hành</h3>
+        <a class="btn btn-primary mb-2" th:href="@{/admin/ambulance-log/add}">Thêm</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bắt đầu</th>
+                <th>Kết thúc</th>
+                <th>Xe</th>
+                <th>Tài xế</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="l : ${logs}">
+                <td th:text="${l.id}"></td>
+                <td th:text="${l.tripStart}"></td>
+                <td th:text="${l.tripEnd}"></td>
+                <td th:text="${l.ambulance.name}"></td>
+                <td th:text="${l.driver.fullName}"></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{'/admin/ambulance-log/edit/' + ${l.id}}">Sửa</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{'/admin/ambulance-log/delete/' + ${l.id}}">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

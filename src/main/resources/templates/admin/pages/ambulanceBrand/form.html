@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Thương hiệu xe</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3 th:text="${action} + ' thương hiệu xe'"></h3>
+        <form th:action="@{/admin/ambulance-brand/save}" th:object="${ambulanceBrand}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label class="form-label">Tên thương hiệu</label>
+                <input type="text" class="form-control" th:field="*{brandName}" />
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a th:href="@{/admin/ambulance-brand}" class="btn btn-secondary">Hủy</a>
+            <div class="text-danger mt-2" th:text="${error}"></div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>
