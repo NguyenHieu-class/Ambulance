@@ -36,7 +36,7 @@ public class HospitalController {
     @GetMapping
     public String listHospitals(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("hospitals", hospitalService.getAllHospital());
@@ -49,7 +49,7 @@ public class HospitalController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("hospital", new Hospital());
@@ -64,7 +64,7 @@ public class HospitalController {
     @GetMapping("/edit/{id}")
     public String showEditForm(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             Hospital hospital = hospitalService.getHospitalById(id);
@@ -82,7 +82,7 @@ public class HospitalController {
     @GetMapping("/delete/{id}")
     public String deleteHospital(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             hospitalService.deleteHospital(id);
@@ -101,7 +101,7 @@ public class HospitalController {
                                HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 

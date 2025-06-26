@@ -28,7 +28,7 @@ public class ProvinceController {
     @GetMapping
     public String listProvinces(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("provinces", provinceService.getAllProvince());
             return "admin/pages/province/list";
@@ -40,7 +40,7 @@ public class ProvinceController {
     @GetMapping("/add")
     public String showAddForm(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("province", new Province());
             model.addAttribute("action", "Thêm");
@@ -53,7 +53,7 @@ public class ProvinceController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             Province province = provinceService.getProvinceById(id);
             model.addAttribute("province", province);
@@ -67,7 +67,7 @@ public class ProvinceController {
     @GetMapping("/delete/{id}")
     public String deleteProvince(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             provinceService.deleteProvince(id);
             return "redirect:/admin/province";
@@ -79,7 +79,7 @@ public class ProvinceController {
     @PostMapping("/save")
     public String saveProvince(@ModelAttribute("province") Province province, RedirectAttributes ra, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
 
             Province oldProvince = provinceService.getProvinceById(province.getId());

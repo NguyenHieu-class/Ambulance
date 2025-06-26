@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping
     public String listUsers(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             model.addAttribute("users", userService.getAllUser());
@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             userService.deleteUser(id);
@@ -61,7 +61,7 @@ public class UserController {
     @GetMapping("/reset-password/{id}")
     public String resetPassword(@PathVariable("id") Long id, RedirectAttributes ra, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        User sessionUser = (User) session.getAttribute("sesionUser");
+        User sessionUser = (User) session.getAttribute("sessionUser");
 
         if (sessionUser != null && sessionUser.getRole().getRoleName().equals("ADMIN")) {
             User user = userService.getUserById(id);
@@ -80,7 +80,7 @@ public class UserController {
     public String uploadAvatar(HttpServletRequest request,
                                @RequestParam("avatarImage") MultipartFile image) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sesionUser");
+        User user = (User) session.getAttribute("sessionUser");
 
         if (user != null) {
             uploadFileService.removeFile(user.getImage());
@@ -103,7 +103,7 @@ public class UserController {
                                  @RequestParam("addressDetail") String addressDetail) {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sesionUser");
+        User user = (User) session.getAttribute("sessionUser");
 
         if (user != null) {
             user.setNameDisplay(nameDisplay);
@@ -125,7 +125,7 @@ public class UserController {
     @PostMapping("/update-phone")
     public String updatePhone(HttpServletRequest request, @RequestParam("phone") String phone) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sesionUser");
+        User user = (User) session.getAttribute("sessionUser");
 
         if (user != null) {
             user.setPhone(phone);
@@ -139,7 +139,7 @@ public class UserController {
     @PostMapping("/update-email")
     public String updateEmail(HttpServletRequest request, @RequestParam("email") String email) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sesionUser");
+        User user = (User) session.getAttribute("sessionUser");
 
         if (user != null) {
             user.setEmail(email);
@@ -156,7 +156,7 @@ public class UserController {
                                        @RequestParam(name = "licenseImage", required = false) MultipartFile licenseImage) {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sesionUser");
+        User user = (User) session.getAttribute("sessionUser");
 
         if (user != null) {
             user.setDrivingLicense(drivingLicense);
