@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Yêu cầu vận chuyển</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3 th:text="${action} + ' yêu cầu vận chuyển'"></h3>
+        <form th:action="@{/admin/transport-request/save}" th:object="${transportRequest}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label class="form-label">Lý do vận chuyển</label>
+                <input type="text" class="form-control" th:field="*{reason}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nhân viên yêu cầu</label>
+                <select class="form-select" name="medicalStaffId">
+                    <option th:each="m : ${medicalStaffs}" th:value="${m.id}" th:text="${m.fullName}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Bệnh viện</label>
+                <select class="form-select" name="hospitalId">
+                    <option th:each="h : ${hospitals}" th:value="${h.id}" th:text="${h.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Xe</label>
+                <select class="form-select" name="ambulanceId">
+                    <option th:each="a : ${ambulances}" th:value="${a.id}" th:text="${a.name}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tài xế</label>
+                <select class="form-select" name="driverId">
+                    <option th:each="d : ${drivers}" th:value="${d.id}" th:text="${d.fullName}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Trạng thái</label>
+                <select class="form-select" th:field="*{status}">
+                    <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a th:href="@{/admin/transport-request}" class="btn btn-secondary">Hủy</a>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Nhân viên y tế</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3 th:text="${action} + ' nhân viên y tế'"></h3>
+        <form th:action="@{/admin/medical-staff/save}" th:object="${medicalStaff}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Tài khoản</label>
+                    <input type="text" class="form-control" th:field="*{username}" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" th:field="*{password}" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Họ tên</label>
+                <input type="text" class="form-control" th:field="*{fullName}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" th:field="*{phone}" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" th:field="*{email}" />
+            </div>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a th:href="@{/admin/medical-staff}" class="btn btn-secondary">Hủy</a>
+            <div class="text-danger mt-2" th:text="${error}"></div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Nhân viên y tế</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3>Danh sách nhân viên y tế</h3>
+        <a class="btn btn-primary mb-2" th:href="@{/admin/medical-staff/add}">Thêm</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>Tài khoản</th>
+                <th>SĐT</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${medicalStaffs}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.fullName}"></td>
+                <td th:text="${m.username}"></td>
+                <td th:text="${m.phone}"></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{'/admin/medical-staff/edit/' + ${m.id}}">Sửa</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{'/admin/medical-staff/delete/' + ${m.id}}">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

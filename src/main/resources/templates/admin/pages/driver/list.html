@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Tài xế</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3>Danh sách tài xế</h3>
+        <a class="btn btn-primary mb-2" th:href="@{/admin/driver/add}">Thêm</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Tài khoản</th>
+                <th>SĐT</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="d : ${drivers}">
+                <td th:text="${d.id}"></td>
+                <td th:text="${d.fullName}"></td>
+                <td th:text="${d.username}"></td>
+                <td th:text="${d.phone}"></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{'/admin/driver/edit/' + ${d.id}}">Sửa</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{'/admin/driver/delete/' + ${d.id}}">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>

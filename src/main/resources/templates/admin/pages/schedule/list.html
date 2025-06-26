@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/layout/css :: css}">
+    <title>Admin - Lịch trực</title>
+</head>
+<body>
+<aside th:replace="~{admin/layout/nav-left :: nav-left}"></aside>
+<div id="right-panel" class="right-panel">
+    <header th:replace="~{admin/layout/header :: header}"></header>
+    <div class="content">
+        <h3>Danh sách lịch trực</h3>
+        <a class="btn btn-primary mb-2" th:href="@{/admin/schedule/add}">Thêm</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ngày</th>
+                <th>Ca</th>
+                <th>Xe</th>
+                <th>Tài xế</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="s : ${schedules}">
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.date}"></td>
+                <td th:text="${s.shift}"></td>
+                <td th:text="${s.ambulance.name}"></td>
+                <td th:text="${s.driver.fullName}"></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{'/admin/schedule/edit/' + ${s.id}}">Sửa</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{'/admin/schedule/delete/' + ${s.id}}">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:replace="~{admin/layout/footer :: footer}"></footer>
+</body>
+</html>
