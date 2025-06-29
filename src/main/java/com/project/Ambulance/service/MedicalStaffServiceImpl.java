@@ -15,37 +15,37 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
 
     @Override
     public List<MedicalStaff> getAllMedicalStaff() {
-        return medicalStaffRepository.findAllByOrderByFullNameAsc();
+        return medicalStaffRepository.findAllByOrderByNameAsc();
     }
 
     @Override
     public List<MedicalStaff> getByHospital(int hospitalId) {
-        return medicalStaffRepository.findByHospitalIdHospitalOrderByFullNameAsc(hospitalId);
+        return medicalStaffRepository.findByHospitalIdHospitalOrderByNameAsc(hospitalId);
     }
 
     @Override
     public List<MedicalStaff> getByStatus(int status) {
-        return medicalStaffRepository.findByStatusOrderByFullNameAsc(status);
+        return medicalStaffRepository.findByStatusOrderByNameAsc(status);
     }
 
     @Override
     public List<MedicalStaff> getByHospitalAndStatus(int hospitalId, int status) {
-        return medicalStaffRepository.findByHospitalIdHospitalAndStatusOrderByFullNameAsc(hospitalId, status);
+        return medicalStaffRepository.findByHospitalIdHospitalAndStatusOrderByNameAsc(hospitalId, status);
     }
 
     @Override
     public List<MedicalStaff> searchByName(String name) {
-        return medicalStaffRepository.findByFullNameContainingIgnoreCaseOrderByFullNameAsc(name);
+        return medicalStaffRepository.findByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
     @Override
     public List<MedicalStaff> searchByPhone(String phone) {
-        return medicalStaffRepository.findByPhoneContainingIgnoreCaseOrderByFullNameAsc(phone);
+        return medicalStaffRepository.findByPhoneContainingIgnoreCaseOrderByNameAsc(phone);
     }
 
     @Override
     public List<MedicalStaff> searchByLicenseNumber(String licenseNumber) {
-        return medicalStaffRepository.findByLicenseNumberContainingIgnoreCaseOrderByFullNameAsc(licenseNumber);
+        return medicalStaffRepository.findByLicenseNumberContainingIgnoreCaseOrderByNameAsc(licenseNumber);
     }
 
     @Override

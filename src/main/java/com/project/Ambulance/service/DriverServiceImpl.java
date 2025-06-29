@@ -15,37 +15,37 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public List<Driver> getAllDrivers() {
-        return driverRepository.findAllByOrderByFullNameAsc();
+        return driverRepository.findAllByOrderByNameAsc();
     }
 
     @Override
     public List<Driver> getDriversByHospital(int hospitalId) {
-        return driverRepository.findByHospitalIdHospitalOrderByFullNameAsc(hospitalId);
+        return driverRepository.findByHospitalIdHospitalOrderByNameAsc(hospitalId);
     }
 
     @Override
     public List<Driver> getDriversByStatus(int status) {
-        return driverRepository.findByStatusOrderByFullNameAsc(status);
+        return driverRepository.findByStatusOrderByNameAsc(status);
     }
 
     @Override
     public List<Driver> getDriversByHospitalAndStatus(int hospitalId, int status) {
-        return driverRepository.findByHospitalIdHospitalAndStatusOrderByFullNameAsc(hospitalId, status);
+        return driverRepository.findByHospitalIdHospitalAndStatusOrderByNameAsc(hospitalId, status);
     }
 
     @Override
     public List<Driver> searchDriversByName(String name) {
-        return driverRepository.findByFullNameContainingIgnoreCaseOrderByFullNameAsc(name);
+        return driverRepository.findByNameContainingIgnoreCaseOrderByNameAsc(name);
     }
 
     @Override
     public List<Driver> searchDriversByPhone(String phone) {
-        return driverRepository.findByPhoneContainingIgnoreCaseOrderByFullNameAsc(phone);
+        return driverRepository.findByPhoneContainingIgnoreCaseOrderByNameAsc(phone);
     }
 
     @Override
     public List<Driver> searchDriversByLicenseNumber(String licenseNumber) {
-        return driverRepository.findByLicenseNumberContainingIgnoreCaseOrderByFullNameAsc(licenseNumber);
+        return driverRepository.findByLicenseNumberContainingIgnoreCaseOrderByNameAsc(licenseNumber);
     }
 
     @Override
