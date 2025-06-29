@@ -5,10 +5,10 @@
     <ul class="nav nav-pills flex-column mb-auto" th:switch="${session.loggedInUser?.role?.name}">
         <th:block th:case="'ADMIN'">
             <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
-            <li><a class="nav-link" href="#">Quản lý xe</a></li>
-            <li><a class="nav-link" href="#">Quản lý bệnh viện</a></li>
-            <li><a class="nav-link" href="#">Quản lý tài xế</a></li>
-            <li><a class="nav-link" href="#">Lịch sử điều xe</a></li>
+            <li><a class="nav-link" th:href="@{/admin/ambulances}">Quản lý xe</a></li>
+            <li><a class="nav-link" th:href="@{/admin/hospitals}">Quản lý bệnh viện</a></li>
+            <li><a class="nav-link" th:href="@{/admin/drivers}">Quản lý tài xế</a></li>
+            <li><a class="nav-link" th:href="@{/admin/bookings}">Lịch sử điều xe</a></li>
         </th:block>
         <th:block th:case="'DRIVER'">
             <li class="nav-item"><a class="nav-link" th:href="@{/driver/dashboard}">Dashboard</a></li>

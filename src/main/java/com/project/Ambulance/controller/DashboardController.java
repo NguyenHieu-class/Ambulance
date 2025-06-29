@@ -20,4 +20,24 @@ public class DashboardController {
     public String medicalDashboard() {
         return "medical/dashboard";
     }
+
+    @GetMapping("/admin/ambulances")
+    public String manageAmbulances() {
+        return "admin/ambulances";
+    }
+
+    @GetMapping("/admin/hospitals")
+    public String manageHospitals() {
+        return "admin/hospitals";
+    }
+
+    @GetMapping("/admin/drivers")
+    public String manageDrivers() {
+        return "admin/drivers";
+    }
+
+    @GetMapping("/admin/bookings")
+    public String bookingHistory() {
+        return "admin/booking-history";
+    }
 }
