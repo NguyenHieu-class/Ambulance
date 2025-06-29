@@ -56,6 +56,8 @@ public class AuthController {
             } else if ("MEDICAL".equalsIgnoreCase(roleName)) {
                 return "redirect:/medical/dashboard";
             }
+            System.out.println("Entered: " + password);
+            System.out.println("In DB:   " + user.getPassword());
             return "redirect:/";
         }
         model.addAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");

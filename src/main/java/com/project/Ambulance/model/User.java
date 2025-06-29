@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "users")
+@Entity
 @Table(name = "users")
 @Getter
 @Setter
