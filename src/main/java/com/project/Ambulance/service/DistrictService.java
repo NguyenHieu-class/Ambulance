@@ -6,7 +6,7 @@ import com.project.Ambulance.model.District;
 
 
 public interface DistrictService {
-	List<District> getAllDistricWithProvenice();
+       List<District> getAllDistrictWithProvince();
 	void saveDistrict(District d);
 	District getDistrict(int id);
 	void deleteDistrict(int id);

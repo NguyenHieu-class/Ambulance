@@ -12,7 +12,7 @@ public interface WardService {
 	Ward getAWard(int id);
 	void saveWard(Ward ward);
 	void deleteWard(int id);
-	List<Ward> getAllWardByIdDistric(int idDistrict);
+       List<Ward> getAllWardByIdDistrict(int idDistrict);
 	
  	
 }
