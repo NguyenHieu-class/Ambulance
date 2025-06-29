@@ -30,13 +30,13 @@ public class AuthController {
         if (success != null) {
             model.addAttribute("success", success);
         }
-        return "login";
+        return "auth/login";
     }
 
     // Show register page
     @GetMapping("/register")
     public String showRegister() {
-        return "register";
+        return "auth/register";
     }
 
     // Handle login
@@ -59,27 +59,35 @@ public class AuthController {
             return "redirect:/";
         }
         model.addAttribute("error", "Sai tên đăng nhập hoặc mật khẩu");
-        return "login";
+        return "auth/login";
     }
 
     // Handle register
     @PostMapping("/register")
     public String doRegister(@RequestParam String username,
                              @RequestParam String password,
+                             @RequestParam String nameDisplay,
+                             @RequestParam(required = false) String email,
+                             @RequestParam(required = false) String phone,
+                             @RequestParam(required = false) String address,
                              Model model) {
         if (userService.getUserByUsername(username) != null) {
             model.addAttribute("error", "Username đã tồn tại");
-            return "register";
+            return "auth/register";
         }
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setNameDisplay(nameDisplay);
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setAddress(address);
         user.setCreateDate(new Date());
         Role staffRole = roleService.getRoleByName("STAFF");
         user.setRole(staffRole);
         userService.saveUser(user);
         model.addAttribute("success", "Đăng ký thành công");
-        return "login";
+        return "auth/login";
     }
 
     // Logout
@@ -92,6 +100,6 @@ public class AuthController {
     @GetMapping("/logout-success")
     public String logoutSuccess(Model model) {
         model.addAttribute("success", "Đăng xuất thành công");
-        return "login";
+        return "common/logout";
     }
 }

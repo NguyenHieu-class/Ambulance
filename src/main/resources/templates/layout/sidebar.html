@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 200px;">
+    <ul class="nav nav-pills flex-column mb-auto" th:switch="${session.loggedInUser?.role?.name}">
+        <th:block th:case="'ADMIN'">
+            <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
+            <li><a class="nav-link" href="#">Quản lý xe</a></li>
+            <li><a class="nav-link" href="#">Quản lý bệnh viện</a></li>
+            <li><a class="nav-link" href="#">Quản lý tài xế</a></li>
+            <li><a class="nav-link" href="#">Lịch sử điều xe</a></li>
+        </th:block>
+        <th:block th:case="'DRIVER'">
+            <li class="nav-item"><a class="nav-link" th:href="@{/driver/dashboard}">Dashboard</a></li>
+            <li><a class="nav-link" href="#">Thông tin cá nhân</a></li>
+            <li><a class="nav-link" href="#">Lịch lái xe</a></li>
+        </th:block>
+        <th:block th:case="'MEDICAL'">
+            <li class="nav-item"><a class="nav-link" th:href="@{/medical/dashboard}">Dashboard</a></li>
+            <li><a class="nav-link" href="#">Thông tin cá nhân</a></li>
+            <li><a class="nav-link" href="#">Lịch đi kèm</a></li>
+        </th:block>
+    </ul>
+</nav>
+</body>
+</html>
