@@ -53,6 +53,12 @@ public class Driver {
     private Date createDate;
     private Date updateDate;
 
+    // === Quan hệ với bệnh viện ===
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hospital_id")
+    @JsonIgnore
+    private Hospital hospital;
+
     // Danh sách xe mà tài xế phụ trách (1-n nhiều theo thời gian)
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude

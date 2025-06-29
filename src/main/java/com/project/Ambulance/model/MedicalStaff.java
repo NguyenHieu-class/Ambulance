@@ -39,6 +39,10 @@ public class MedicalStaff {
     // Giới tính: true = nam, false = nữ
     private boolean sex;
 
+    // Số giấy phép hành nghề (nếu có)
+    @Column(columnDefinition = "nvarchar(100)")
+    private String licenseNumber;
+
     // Chuyên môn (VD: bác sĩ, y tá, cấp cứu viên...)
     @Column(columnDefinition = "nvarchar(100)")
     private String specialization;
