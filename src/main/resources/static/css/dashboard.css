@@ -1,0 +1,24 @@
+/* Custom styles for dashboard tables and forms */
+
+/* Table styling */
+table.table {
+    border: 1px solid #dee2e6;
+}
+
+table.table thead {
+    background-color: #f8f9fa;
+}
+
+table.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form styling */
+form .form-control:focus {
+    box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .25);
+    border-color: #0d6efd;
+}
+
+form.was-validated .form-control:invalid {
+    border-color: #dc3545;
+}
