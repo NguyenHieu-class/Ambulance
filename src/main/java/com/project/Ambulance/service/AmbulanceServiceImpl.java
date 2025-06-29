@@ -1,0 +1,80 @@
+package com.project.Ambulance.service;
+
+import com.project.Ambulance.model.Ambulance;
+import com.project.Ambulance.repository.AmbulanceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AmbulanceServiceImpl implements AmbulanceService {
+
+    @Autowired
+    private AmbulanceRepository ambulanceRepository;
+
+    @Override
+    public List<Ambulance> getAllAmbulances() {
+        return ambulanceRepository.findAllByOrderByNameAsc();
+    }
+
+    @Override
+    public List<Ambulance> getAmbulancesByStatus(int status) {
+        return ambulanceRepository.findByStatusOrderByNameAsc(status);
+    }
+
+    @Override
+    public List<Ambulance> getAmbulancesByHospital(int hospitalId) {
+        return ambulanceRepository.findByHospitalIdHospitalOrderByNameAsc(hospitalId);
+    }
+
+    @Override
+    public List<Ambulance> getAmbulancesByDriver(int driverId) {
+        return ambulanceRepository.findByDriverIdDriverOrderByNameAsc(driverId);
+    }
+
+    @Override
+    public List<Ambulance> searchAmbulancesByLocation(String keyword) {
+        return ambulanceRepository.findByCurrentLocationContainingIgnoreCaseOrderByNameAsc(keyword);
+    }
+
+    @Override
+    public Ambulance getAmbulanceById(int id) {
+        return ambulanceRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Ambulance getAmbulanceByLicensePlate(String licensePlate) {
+        return ambulanceRepository.findByLicensePlate(licensePlate);
+    }
+
+    @Override
+    public Ambulance saveAmbulance(Ambulance ambulance) {
+        return ambulanceRepository.save(ambulance);
+    }
+
+    @Override
+    public void deleteAmbulance(int id) {
+        ambulanceRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateStatus(int id, int status) {
+        ambulanceRepository.updateStatus(id, status);
+    }
+
+    @Override
+    public long countAll() {
+        return ambulanceRepository.count();
+    }
+
+    @Override
+    public int countByStatus(int status) {
+        return ambulanceRepository.countByStatus(status);
+    }
+
+    @Override
+    public List<Ambulance> getAvailableAmbulancesWithMedicalEquipment() {
+        return ambulanceRepository.findByMedicalEquipmentTrueAndStatusOrderByNameAsc(0); // 0 = hoạt động
+    }
+}

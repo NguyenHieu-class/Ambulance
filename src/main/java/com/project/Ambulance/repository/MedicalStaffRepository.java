@@ -1,0 +1,50 @@
+package com.project.Ambulance.repository;
+
+import com.project.Ambulance.model.MedicalStaff;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import jakarta.transaction.Transactional;
+import java.util.List;
+
+@Repository
+public interface MedicalStaffRepository extends JpaRepository<MedicalStaff, Integer> {
+
+    // Lấy tất cả theo tên tăng dần
+    List<MedicalStaff> findAllByOrderByFullNameAsc();
+
+    // Tìm chính xác theo số điện thoại
+    MedicalStaff findByPhone(String phone);
+
+    // Tìm gần đúng theo số điện thoại (bổ sung)
+    List<MedicalStaff> findByPhoneContainingIgnoreCaseOrderByFullNameAsc(String phone);
+
+    // Tìm theo tên gần đúng
+    List<MedicalStaff> findByFullNameContainingIgnoreCaseOrderByFullNameAsc(String fullName);
+
+    // Tìm theo số giấy phép hành nghề
+    List<MedicalStaff> findByLicenseNumberContainingIgnoreCaseOrderByFullNameAsc(String licenseNumber);
+
+    // Tìm theo trạng thái
+    List<MedicalStaff> findByStatusOrderByFullNameAsc(int status);
+
+    // Tìm theo bệnh viện
+    List<MedicalStaff> findByHospitalIdHospitalOrderByFullNameAsc(int hospitalId);
+
+    // Tìm theo bệnh viện + trạng thái
+    List<MedicalStaff> findByHospitalIdHospitalAndStatusOrderByFullNameAsc(int hospitalId, int status);
+
+    // Cập nhật trạng thái
+    @Modifying
+    @Transactional
+    @Query("UPDATE MedicalStaff m SET m.status = :status WHERE m.idMedicalStaff = :id")
+    void updateStatus(@Param("id") int id, @Param("status") int status);
+
+    // Đếm theo bệnh viện
+    int countByHospitalIdHospital(int hospitalId);
+
+    long count();
+}
