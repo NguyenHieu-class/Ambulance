@@ -24,7 +24,7 @@
             <tbody>
                 <tr th:each="b : ${bookings}">
                     <td th:text="${b.idBooking}"></td>
-                    <td th:text="${b.startTime}"></td>
+                    <td th:text="${#dates.format(b.requestTime, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${b.pickupAddress}"></td>
                     <td th:text="${b.hospital.name}"></td>
                 </tr>
