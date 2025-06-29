@@ -80,6 +80,12 @@ public class Ambulance {
     private Date createDate;
     private Date updateDate;
 
+    // === Quan hệ với thương hiệu xe ===
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_ambulance_id")
+    @JsonIgnore
+    private BrandAmbulance brandAmbulance;
+
     // === Quan hệ với bệnh viện ===
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
