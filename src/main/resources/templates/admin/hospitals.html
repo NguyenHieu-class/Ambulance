@@ -12,6 +12,40 @@
     <div th:replace="layout/sidebar :: sidebar"></div>
     <div class="flex-fill p-3">
         <h2>Quản lý bệnh viện</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên bệnh viện</th>
+                <th>Điện thoại</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="h : ${hospitals}">
+                <td th:text="${h.idHospital}"></td>
+                <td th:text="${h.name}"></td>
+                <td th:text="${h.phone}"></td>
+                <td>
+                    <a th:href="@{'/admin/hospital/' + ${h.idHospital} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{'/admin/hospital/' + ${h.idHospital} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Thêm bệnh viện</h4>
+        <form th:action="@{/admin/hospitals}" method="post" th:object="${hospitalForm}" class="row g-3">
+            <div class="col-md-4">
+                <input type="text" th:field="*{name}" class="form-control" placeholder="Tên" required />
+            </div>
+            <div class="col-md-4">
+                <input type="text" th:field="*{phone}" class="form-control" placeholder="Điện thoại" required />
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
     </div>
 </div>
 <div th:replace="layout/footer :: footer"></div>
