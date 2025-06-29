@@ -16,9 +16,29 @@ public class DashboardController {
         return "driver/dashboard";
     }
 
+    @GetMapping("/driver/profile")
+    public String driverProfile() {
+        return "driver/profile";
+    }
+
+    @GetMapping("/driver/schedule")
+    public String driverSchedule() {
+        return "driver/schedule";
+    }
+
     @GetMapping("/medical/dashboard")
     public String medicalDashboard() {
         return "medical/dashboard";
+    }
+
+    @GetMapping("/medical/profile")
+    public String medicalProfile() {
+        return "medical/profile";
+    }
+
+    @GetMapping("/medical/schedule")
+    public String medicalSchedule() {
+        return "medical/schedule";
     }
 
     @GetMapping("/admin/ambulances")

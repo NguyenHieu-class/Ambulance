@@ -12,13 +12,13 @@
         </th:block>
         <th:block th:case="'DRIVER'">
             <li class="nav-item"><a class="nav-link" th:href="@{/driver/dashboard}">Dashboard</a></li>
-            <li><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-            <li><a class="nav-link" href="#">Lịch lái xe</a></li>
+            <li><a class="nav-link" th:href="@{/driver/profile}">Thông tin cá nhân</a></li>
+            <li><a class="nav-link" th:href="@{/driver/schedule}">Lịch lái xe</a></li>
         </th:block>
         <th:block th:case="'MEDICAL'">
             <li class="nav-item"><a class="nav-link" th:href="@{/medical/dashboard}">Dashboard</a></li>
-            <li><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-            <li><a class="nav-link" href="#">Lịch đi kèm</a></li>
+            <li><a class="nav-link" th:href="@{/medical/profile}">Thông tin cá nhân</a></li>
+            <li><a class="nav-link" th:href="@{/medical/schedule}">Lịch đi kèm</a></li>
         </th:block>
     </ul>
 </nav>
