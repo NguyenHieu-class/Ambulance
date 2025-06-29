@@ -17,25 +17,25 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
     Driver findByPhone(String phone);
 
     // Tìm theo tên (gần đúng, không phân biệt hoa thường)
-    List<Driver> findByFullNameContainingIgnoreCaseOrderByFullNameAsc(String fullName);
+    List<Driver> findByNameContainingIgnoreCaseOrderByNameAsc(String name);
 
     // Tìm theo số điện thoại gần đúng
-    List<Driver> findByPhoneContainingIgnoreCaseOrderByFullNameAsc(String phone);
+    List<Driver> findByPhoneContainingIgnoreCaseOrderByNameAsc(String phone);
 
     // Tìm theo số bằng lái gần đúng
-    List<Driver> findByLicenseNumberContainingIgnoreCaseOrderByFullNameAsc(String licenseNumber);
+    List<Driver> findByLicenseNumberContainingIgnoreCaseOrderByNameAsc(String licenseNumber);
 
     // Tìm theo trạng thái
-    List<Driver> findByStatusOrderByFullNameAsc(int status);
+    List<Driver> findByStatusOrderByNameAsc(int status);
 
     // Lấy tất cả tài xế theo tên tăng dần
-    List<Driver> findAllByOrderByFullNameAsc();
+    List<Driver> findAllByOrderByNameAsc();
 
     // Tìm theo bệnh viện
-    List<Driver> findByHospitalIdHospitalOrderByFullNameAsc(int hospitalId);
+    List<Driver> findByHospitalIdHospitalOrderByNameAsc(int hospitalId);
 
     // Tìm theo bệnh viện và trạng thái
-    List<Driver> findByHospitalIdHospitalAndStatusOrderByFullNameAsc(int hospitalId, int status);
+    List<Driver> findByHospitalIdHospitalAndStatusOrderByNameAsc(int hospitalId, int status);
 
     // Đếm số lượng theo trạng thái
     int countByStatus(int status);

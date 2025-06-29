@@ -14,28 +14,28 @@ import java.util.List;
 public interface MedicalStaffRepository extends JpaRepository<MedicalStaff, Integer> {
 
     // Lấy tất cả theo tên tăng dần
-    List<MedicalStaff> findAllByOrderByFullNameAsc();
+    List<MedicalStaff> findAllByOrderByNameAsc();
 
     // Tìm chính xác theo số điện thoại
     MedicalStaff findByPhone(String phone);
 
     // Tìm gần đúng theo số điện thoại (bổ sung)
-    List<MedicalStaff> findByPhoneContainingIgnoreCaseOrderByFullNameAsc(String phone);
+    List<MedicalStaff> findByPhoneContainingIgnoreCaseOrderByNameAsc(String phone);
 
     // Tìm theo tên gần đúng
-    List<MedicalStaff> findByFullNameContainingIgnoreCaseOrderByFullNameAsc(String fullName);
+    List<MedicalStaff> findByNameContainingIgnoreCaseOrderByNameAsc(String name);
 
     // Tìm theo số giấy phép hành nghề
-    List<MedicalStaff> findByLicenseNumberContainingIgnoreCaseOrderByFullNameAsc(String licenseNumber);
+    List<MedicalStaff> findByLicenseNumberContainingIgnoreCaseOrderByNameAsc(String licenseNumber);
 
     // Tìm theo trạng thái
-    List<MedicalStaff> findByStatusOrderByFullNameAsc(int status);
+    List<MedicalStaff> findByStatusOrderByNameAsc(int status);
 
     // Tìm theo bệnh viện
-    List<MedicalStaff> findByHospitalIdHospitalOrderByFullNameAsc(int hospitalId);
+    List<MedicalStaff> findByHospitalIdHospitalOrderByNameAsc(int hospitalId);
 
     // Tìm theo bệnh viện + trạng thái
-    List<MedicalStaff> findByHospitalIdHospitalAndStatusOrderByFullNameAsc(int hospitalId, int status);
+    List<MedicalStaff> findByHospitalIdHospitalAndStatusOrderByNameAsc(int hospitalId, int status);
 
     // Cập nhật trạng thái
     @Modifying
