@@ -20,11 +20,11 @@ public class ProvinceServiceImpl  implements ProvinceService{
 		return repo.findAllProvinceOrderByName();
 	}
 
-	@Override
-	public void saveProvices(Province p) {
-		repo.save(p);
-		
-	}
+       @Override
+       public void saveProvince(Province p) {
+               repo.save(p);
+
+       }
 
 	@Override
 	public Province getProvince(int id) {

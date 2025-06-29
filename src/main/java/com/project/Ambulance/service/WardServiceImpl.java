@@ -54,11 +54,11 @@ public class WardServiceImpl  implements WardService{
 		return repo.getAllWardWithDistrictAndProvinces();
 	}
 
-	@Override
-	public List<Ward> getAllWardByIdDistric(int idDistrict) {
+       @Override
+       public List<Ward> getAllWardByIdDistrict(int idDistrict) {
 		
-		return repo.findWardByDistrictIdDistrict(idDistrict);
-	}
+               return repo.findWardByDistrictIdDistrict(idDistrict);
+       }
 
 	
 }

@@ -15,11 +15,11 @@ public class DistrictServiceImpl implements DistrictService {
 	@Autowired
 	private DistrictRepository repo;
 	
-	@Override
-	public List<District> getAllDistricWithProvenice() {
+       @Override
+       public List<District> getAllDistrictWithProvince() {
 		
-		return repo.getAllDistrictWithProvince();
-	}
+               return repo.getAllDistrictWithProvince();
+       }
 
 	@Override
 	public void saveDistrict(District d) {
