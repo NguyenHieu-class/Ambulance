@@ -282,11 +282,18 @@ public class DashboardController {
     @GetMapping("/admin/driver/add")
     public String addDriverForm(Model model) {
         model.addAttribute("driverForm", new Driver());
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("driverStatusMap", StatusMappingUtil.driverStatusMap());
         return "pages/driver/add.driver";
     }
 
     @PostMapping("/admin/drivers")
-    public String createDriver(@ModelAttribute("driverForm") Driver driver) {
+    public String createDriver(@ModelAttribute("driverForm") Driver driver,
+                               @RequestParam("imageFile") MultipartFile imageFile) {
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = uploadFile.uploadSingleFile(imageFile);
+            driver.setAvatar(fileName);
+        }
         driverService.saveDriver(driver);
         return "redirect:/admin/drivers";
     }
