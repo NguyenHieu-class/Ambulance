@@ -27,6 +27,7 @@
                 <td th:text="${h.name}"></td>
                 <td th:text="${h.phone}"></td>
                 <td>
+                    <a th:href="@{/admin/hospital/{id}(id=${h.idHospital})}" class="btn btn-sm btn-info me-1">Xem chi tiết</a>
                     <a th:href="@{/admin/hospital/{id}/edit(id=${h.idHospital})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{/admin/hospital/{id}/delete(id=${h.idHospital})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>

@@ -234,6 +234,16 @@ public class DashboardController {
         return "redirect:/admin/ambulances";
     }
 
+    @GetMapping("/admin/ambulance/{id}")
+    public String detailAmbulance(@PathVariable int id, Model model) {
+        Ambulance ambulance = ambulanceService.getAmbulanceById(id);
+        model.addAttribute("ambulance", ambulance);
+        model.addAttribute("brandAmbulances", brandAmbulanceService.getAllBrands());
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("drivers", driverService.getAllDrivers());
+        return "pages/ambulance/detail.ambulance";
+    }
+
     @GetMapping("/admin/hospitals")
     public String manageHospitals(Model model) {
         model.addAttribute("hospitals", hospitalService.getAllHospitals());
@@ -271,6 +281,13 @@ public class DashboardController {
         hospital.setIdHospital(id);
         hospitalService.saveHospital(hospital);
         return "redirect:/admin/hospitals";
+    }
+
+    @GetMapping("/admin/hospital/{id}")
+    public String detailHospital(@PathVariable int id, Model model) {
+        Hospital hospital = hospitalService.getHospitalById(id);
+        model.addAttribute("hospital", hospital);
+        return "pages/hospital/detail.hospital";
     }
 
     @GetMapping("/admin/drivers")
@@ -318,6 +335,13 @@ public class DashboardController {
         driver.setIdDriver(id);
         driverService.saveDriver(driver);
         return "redirect:/admin/drivers";
+    }
+
+    @GetMapping("/admin/driver/{id}")
+    public String detailDriver(@PathVariable int id, Model model) {
+        Driver driver = driverService.getDriverById(id);
+        model.addAttribute("driver", driver);
+        return "pages/driver/detail.driver";
     }
 
     // === Medical Staff Management ===
@@ -375,6 +399,15 @@ public class DashboardController {
         return "redirect:/admin/medicalStaffs";
     }
 
+    @GetMapping("/admin/medical/{id}")
+    public String detailMedical(@PathVariable int id, Model model) {
+        MedicalStaff staff = medicalStaffService.getById(id);
+        model.addAttribute("medicalStaff", staff);
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("medicalStatusMap", StatusMappingUtil.medicalStatusMap());
+        return "pages/medical/detail.medical";
+    }
+
     @GetMapping("/admin/bookings")
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
@@ -409,6 +442,17 @@ public class DashboardController {
         }
         bookingService.saveBooking(booking);
         return "redirect:/admin/bookings";
+    }
+
+    @GetMapping("/admin/booking/{id}")
+    public String detailBooking(@PathVariable int id, Model model) {
+        Booking booking = bookingService.getBooking(id);
+        model.addAttribute("booking", booking);
+        model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
+        model.addAttribute("drivers", driverService.getAllDrivers());
+        model.addAttribute("medicalStaff", medicalStaffService.getAllMedicalStaff());
+        model.addAttribute("bookingStatusMap", StatusMappingUtil.bookingStatusMap());
+        return "pages/booking/detail.booking";
     }
 
     // === Province Management ===
@@ -449,6 +493,13 @@ public class DashboardController {
         province.setIdProvince(id);
         provinceService.saveProvince(province);
         return "redirect:/admin/provinces";
+    }
+
+    @GetMapping("/admin/province/{id}")
+    public String detailProvince(@PathVariable int id, Model model) {
+        Province province = provinceService.getProvince(id);
+        model.addAttribute("province", province);
+        return "pages/province/detail.province";
     }
 
     // === District Management ===
@@ -493,6 +544,14 @@ public class DashboardController {
         return "redirect:/admin/districts";
     }
 
+    @GetMapping("/admin/district/{id}")
+    public String detailDistrict(@PathVariable int id, Model model) {
+        District district = districtService.getDistrict(id);
+        model.addAttribute("district", district);
+        model.addAttribute("provinces", provinceService.getAllProvinceOrderByName());
+        return "pages/district/detail.district";
+    }
+
     // === Ward Management ===
     @GetMapping("/admin/wards")
     public String manageWards(Model model) {
@@ -535,6 +594,14 @@ public class DashboardController {
         return "redirect:/admin/wards";
     }
 
+    @GetMapping("/admin/ward/{id}")
+    public String detailWard(@PathVariable int id, Model model) {
+        Ward ward = wardService.getAWard(id);
+        model.addAttribute("ward", ward);
+        model.addAttribute("districts", districtService.getAllDistrict());
+        return "pages/ward/detail.ward";
+    }
+
     // === Brand Ambulance Management ===
     @GetMapping("/admin/brand-ambulances")
     public String manageBrands(Model model) {
@@ -567,6 +634,13 @@ public class DashboardController {
         brand.setIdBrand(id);
         brandAmbulanceService.saveBrand(brand);
         return "redirect:/admin/brand-ambulances";
+    }
+
+    @GetMapping("/admin/brand-ambulance/{id}")
+    public String detailBrand(@PathVariable int id, Model model) {
+        BrandAmbulance brand = brandAmbulanceService.getBrandById(id);
+        model.addAttribute("brand", brand);
+        return "pages/brand/detail.brand";
     }
 
     @GetMapping("/admin/brand-ambulance/{id}/delete")

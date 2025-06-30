@@ -25,6 +25,7 @@
                 <td th:text="${b.idBrand}"></td>
                 <td th:text="${b.nameBrand}"></td>
                 <td>
+                    <a th:href="@{/admin/brand-ambulance/{id}(id=${b.idBrand})}" class="btn btn-sm btn-info me-1">Xem chi tiết</a>
                     <a th:href="@{/admin/brand-ambulance/{id}/edit(id=${b.idBrand})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{/admin/brand-ambulance/{id}/delete(id=${b.idBrand})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>

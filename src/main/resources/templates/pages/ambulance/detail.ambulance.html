@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ambulance Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="~{layout/header :: header}"></div>
+<div class="d-flex">
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <div class="flex-fill p-3">
+        <h2>Chi tiết xe cứu thương</h2>
+        <form th:object="${ambulance}" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Tên xe</label>
+                <input type="text" th:field="*{name}" class="form-control" required  readonly />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Biển số</label>
+                <input type="text" th:field="*{licensePlate}" class="form-control" required  readonly />
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Mô tả</label>
+                <input type="text" th:field="*{description}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Năm sản xuất</label>
+                <input type="number" th:field="*{modelYear}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Trạng thái</label>
+                <input type="number" th:field="*{status}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Loại nhiên liệu (xăng?)</label>
+                <input type="checkbox" th:field="*{fuelType}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Tiêu thụ (l/100km)</label>
+                <input type="number" step="0.1" th:field="*{fuelConsumptionPer100km}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Số ghế</label>
+                <input type="number" th:field="*{numberOfSeats}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Thiết bị y tế</label>
+                <input type="checkbox" th:field="*{medicalEquipment}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Bình oxy</label>
+                <input type="checkbox" th:field="*{oxygenTank}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Máy sốc tim</label>
+                <input type="checkbox" th:field="*{defibrillator}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Máy theo dõi</label>
+                <input type="checkbox" th:field="*{patientMonitor}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Băng ca</label>
+                <input type="checkbox" th:field="*{stretcher}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Treo dịch truyền</label>
+                <input type="checkbox" th:field="*{infusionSupport}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Lồng kính</label>
+                <input type="checkbox" th:field="*{incubatorSupport}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">GPS</label>
+                <input type="checkbox" th:field="*{gpsLocator}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Camera 360</label>
+                <input type="checkbox" th:field="*{camera360}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Camera lùi</label>
+                <input type="checkbox" th:field="*{reverseCamera}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Dash cam</label>
+                <input type="checkbox" th:field="*{dashCamera}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">TPMS</label>
+                <input type="checkbox" th:field="*{tpms}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Cảm biến va chạm</label>
+                <input type="checkbox" th:field="*{impactSensor}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Cảnh báo tốc độ</label>
+                <input type="checkbox" th:field="*{speedWarning}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Điều hòa</label>
+                <input type="checkbox" th:field="*{airConditioning}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Hộp số sàn</label>
+                <input type="checkbox" th:field="*{manualTransmission}" class="form-check-input" disabled />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Ảnh</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Vị trí hiện tại</label>
+                <input type="text" th:field="*{currentLocation}" class="form-control"  readonly />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Thương hiệu</label>
+                <select disabled th:field="*{brandAmbulance.idBrand}" class="form-select">
+                    <option th:each="b : ${brandAmbulances}" th:value="${b.idBrand}" th:text="${b.nameBrand}"></option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Bệnh viện</label>
+                <select disabled th:field="*{hospital.idHospital}" class="form-select">
+                    <option th:each="h : ${hospitals}" th:value="${h.idHospital}" th:text="${h.name}"></option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Tài xế</label>
+                <select disabled th:field="*{driver.idDriver}" class="form-select">
+                    <option th:each="d : ${drivers}" th:value="${d.idDriver}" th:text="${d.name}"></option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

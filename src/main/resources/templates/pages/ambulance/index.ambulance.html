@@ -42,6 +42,7 @@
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
                     </form>
+                    <a th:href="@{/admin/ambulance/{id}(id=${a.idAmbulance})}" class="btn btn-sm btn-info me-1">Xem chi tiết</a>
                     <a th:href="@{/admin/ambulance/{id}/edit(id=${a.idAmbulance})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{/admin/ambulance/{id}/delete(id=${a.idAmbulance})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
