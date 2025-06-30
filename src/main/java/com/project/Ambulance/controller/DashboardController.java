@@ -18,6 +18,8 @@ import com.project.Ambulance.service.MedicalStaffService;
 import com.project.Ambulance.service.ProvinceService;
 import com.project.Ambulance.service.DistrictService;
 import com.project.Ambulance.service.WardService;
+import com.project.Ambulance.service.UploadFile;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,9 @@ public class DashboardController {
 
     @Autowired
     private WardService wardService;
+
+    @Autowired
+    private UploadFile uploadFile;
 
 
     @GetMapping("/admin/dashboard")
@@ -148,7 +153,12 @@ public class DashboardController {
     }
 
     @PostMapping("/admin/ambulances")
-    public String createAmbulance(@ModelAttribute("ambulanceForm") Ambulance ambulance) {
+    public String createAmbulance(@ModelAttribute("ambulanceForm") Ambulance ambulance,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = uploadFile.uploadSingleFile(imageFile);
+            ambulance.setImage(fileName);
+        }
         ambulanceService.saveAmbulance(ambulance);
         return "redirect:/admin/ambulances";
     }
@@ -168,8 +178,13 @@ public class DashboardController {
 
     @PostMapping("/admin/ambulance/{id}/edit")
     public String updateAmbulance(@PathVariable int id,
-                                  @ModelAttribute("ambulanceForm") Ambulance ambulance) {
+                                  @ModelAttribute("ambulanceForm") Ambulance ambulance,
+                                  @RequestParam("imageFile") MultipartFile imageFile) {
         ambulance.setIdAmbulance(id);
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = uploadFile.uploadSingleFile(imageFile);
+            ambulance.setImage(fileName);
+        }
         ambulanceService.saveAmbulance(ambulance);
         return "redirect:/admin/ambulances";
     }
