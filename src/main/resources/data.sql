@@ -39,7 +39,7 @@ VALUES
 -- Drivers
 INSERT INTO drivers (id_driver, name, phone, email, date_of_birth, sex, license_number, avatar, status, create_date, update_date, hospital_id)
 VALUES
-  (1, 'John Doe', '0901234567', 'john@example.com', '1980-01-01', TRUE, 'DL123', NULL, 0, NOW(), NOW(), 1);
+  (3, 'John Doe', '0901234567', 'john@example.com', '1980-01-01', TRUE, 'DL123', NULL, 0, NOW(), NOW(), 1);
 
 -- Ambulances
 INSERT INTO ambulances (
@@ -55,7 +55,7 @@ VALUES
    TRUE, TRUE, FALSE, FALSE,
    TRUE, TRUE, TRUE, TRUE, TRUE, FALSE,
    TRUE, TRUE, TRUE, 'amb1.png', 'Garage',
-   NOW(), NOW(), 1, 1, 1);
+    NOW(), NOW(), 1, 1, 3);
 
 -- Medical staff
 INSERT INTO medical_staff (id_medical_staff, name, phone, email, date_of_birth, sex, license_number, specialization, avatar, status, create_date, update_date, hospital_id)
