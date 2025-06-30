@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Medical Staff</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="~{layout/header :: header}"></div>
+<div class="d-flex">
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <div class="flex-fill p-3">
+        <h2>Thêm nhân viên y tế</h2>
+        <form th:action="@{/admin/medicalStaffs}" method="post" th:object="${medicalForm}" class="row g-3" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label class="form-label">Họ tên</label>
+                <input type="text" th:field="*{name}" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Số điện thoại</label>
+                <input type="text" th:field="*{phone}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" th:field="*{email}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Ngày sinh</label>
+                <input type="text" th:field="*{dateOfBirth}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Giới tính (nam?)</label>
+                <input type="checkbox" th:field="*{sex}" class="form-check-input" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Số giấy phép hành nghề</label>
+                <input type="text" th:field="*{licenseNumber}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Chuyên môn</label>
+                <input type="text" th:field="*{specialization}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Ảnh đại diện</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Trạng thái</label>
+                <select th:field="*{status}" class="form-select">
+                    <option th:each="s : ${medicalStatusMap}"
+                            th:value="${s.key}"
+                            th:text="${s.key} + ' - ' + ${s.value}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Bệnh viện</label>
+                <select th:field="*{hospital.idHospital}" class="form-select">
+                    <option th:each="h : ${hospitals}" th:value="${h.idHospital}" th:text="${h.name}"></option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a th:href="@{/admin/medicalStaffs}" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

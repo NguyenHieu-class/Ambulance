@@ -319,6 +319,54 @@ public class DashboardController {
         return "redirect:/admin/drivers";
     }
 
+    // === Medical Staff Management ===
+    @GetMapping("/admin/medicalStaffs")
+    public String manageMedicalStaff(Model model) {
+        model.addAttribute("medicalStaffs", medicalStaffService.getAllMedicalStaff());
+        model.addAttribute("medicalStatusMap", StatusMappingUtil.medicalStatusMap());
+        return "pages/medical/index.medical";
+    }
+
+    @GetMapping("/admin/medical/add")
+    public String addMedicalForm(Model model) {
+        model.addAttribute("medicalForm", new MedicalStaff());
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("medicalStatusMap", StatusMappingUtil.medicalStatusMap());
+        return "pages/medical/add.medical";
+    }
+
+    @PostMapping("/admin/medicalStaffs")
+    public String createMedical(@ModelAttribute("medicalForm") MedicalStaff staff,
+                                @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) {
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = uploadFile.uploadSingleFile(imageFile);
+            staff.setAvatar(fileName);
+        }
+        medicalStaffService.save(staff);
+        return "redirect:/admin/medicalStaffs";
+    }
+
+    @GetMapping("/admin/medical/{id}/delete")
+    public String deleteMedical(@PathVariable int id) {
+        medicalStaffService.delete(id);
+        return "redirect:/admin/medicalStaffs";
+    }
+
+    @GetMapping("/admin/medical/{id}/edit")
+    public String editMedicalForm(@PathVariable int id, Model model) {
+        MedicalStaff staff = medicalStaffService.getById(id);
+        model.addAttribute("medicalForm", staff);
+        return "pages/medical/update.medical";
+    }
+
+    @PostMapping("/admin/medical/{id}/edit")
+    public String updateMedical(@PathVariable int id,
+                                @ModelAttribute("medicalForm") MedicalStaff staff) {
+        staff.setIdMedicalStaff(id);
+        medicalStaffService.save(staff);
+        return "redirect:/admin/medicalStaffs";
+    }
+
     @GetMapping("/admin/bookings")
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
