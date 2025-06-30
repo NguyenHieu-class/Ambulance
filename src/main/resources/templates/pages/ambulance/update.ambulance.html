@@ -12,7 +12,7 @@
     <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Cập nhật xe cứu thương</h2>
-        <form th:action="@{'/admin/ambulance/' + ${ambulanceForm.idAmbulance} + '/edit'}" method="post" th:object="${ambulanceForm}" class="row g-3">
+        <form th:action="@{/admin/ambulance/{id}/edit(id=${ambulanceForm.idAmbulance})}" method="post" th:object="${ambulanceForm}" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tên xe</label>
                 <input type="text" th:field="*{name}" class="form-control" required />

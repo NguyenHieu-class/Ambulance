@@ -12,7 +12,7 @@
     <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Cập nhật tài xế</h2>
-        <form th:action="@{'/admin/driver/' + ${driverForm.idDriver} + '/edit'}" method="post" th:object="${driverForm}" class="row g-3">
+        <form th:action="@{/admin/driver/{id}/edit(id=${driverForm.idDriver})}" method="post" th:object="${driverForm}" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Họ tên</label>
                 <input type="text" th:field="*{name}" class="form-control" required />
