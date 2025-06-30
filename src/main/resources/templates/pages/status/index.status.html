@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý trạng thái</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="~{layout/header :: header}"></div>
+<div class="d-flex">
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <div class="flex-fill p-3">
+        <h2>Quản lý trạng thái</h2>
+
+        <h4 class="mt-4">Xe cứu thương</h4>
+        <table class="table table-bordered mt-2">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên xe</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="a : ${ambulances}">
+                <td th:text="${a.idAmbulance}"></td>
+                <td th:text="${a.name}"></td>
+                <td th:text="${ambulanceStatusMap[a.status]}"></td>
+                <td>
+                    <form th:action="@{'/admin/status/ambulance/' + ${a.idAmbulance}}" method="post" class="d-flex">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(ambulanceStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == a.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Tài xế</h4>
+        <table class="table table-bordered mt-2">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="d : ${drivers}">
+                <td th:text="${d.idDriver}"></td>
+                <td th:text="${d.name}"></td>
+                <td th:text="${driverStatusMap[d.status]}"></td>
+                <td>
+                    <form th:action="@{'/admin/status/driver/' + ${d.idDriver}}" method="post" class="d-flex">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(driverStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == d.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Nhân viên y tế</h4>
+        <table class="table table-bordered mt-2">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${medicalStaff}">
+                <td th:text="${m.idMedicalStaff}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${medicalStatusMap[m.status]}"></td>
+                <td>
+                    <form th:action="@{'/admin/status/medical/' + ${m.idMedicalStaff}}" method="post" class="d-flex">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(medicalStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == m.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Đơn điều xe</h4>
+        <table class="table table-bordered mt-2">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Người yêu cầu</th>
+                <th>Trạng thái</th>
+                <th>Cập nhật</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="b : ${bookings}">
+                <td th:text="${b.idBooking}"></td>
+                <td th:text="${b.requesterName}"></td>
+                <td th:text="${bookingStatusMap[b.status]}"></td>
+                <td>
+                    <form th:action="@{'/admin/status/booking/' + ${b.idBooking}}" method="post" class="d-flex">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(bookingStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == b.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>
