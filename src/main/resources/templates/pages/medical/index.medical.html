@@ -40,6 +40,7 @@
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
                     </form>
+                    <a th:href="@{/admin/medical/{id}(id=${m.idMedicalStaff})}" class="btn btn-sm btn-info me-1">Xem chi tiết</a>
                     <a th:href="@{/admin/medical/{id}/edit(id=${m.idMedicalStaff})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{/admin/medical/{id}/delete(id=${m.idMedicalStaff})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>

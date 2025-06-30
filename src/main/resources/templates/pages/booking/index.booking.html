@@ -32,7 +32,7 @@
                 <td th:text="${b.pickupAddress}"></td>
                 <td th:text="${bookingStatusMap[b.status]}"></td>
                 <td>
-                    <form th:action="@{/admin/status/booking/{id}(id=${b.idBooking})}" method="post" class="d-flex">
+                    <form th:action="@{/admin/status/booking/{id}(id=${b.idBooking})}" method="post" class="d-flex mb-1">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${bookingStatusMap}"
                                     th:value="${s.key}"
@@ -41,6 +41,7 @@
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
                     </form>
+                    <a th:href="@{/admin/booking/{id}(id=${b.idBooking})}" class="btn btn-sm btn-info">Xem chi tiết</a>
                 </td>
             </tr>
             </tbody>
