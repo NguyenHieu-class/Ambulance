@@ -3,10 +3,12 @@ package com.project.Ambulance.controller;
 import com.project.Ambulance.model.Ambulance;
 import com.project.Ambulance.model.Driver;
 import com.project.Ambulance.model.Hospital;
+import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.service.AmbulanceService;
 import com.project.Ambulance.service.BookingService;
 import com.project.Ambulance.service.DriverService;
 import com.project.Ambulance.service.HospitalService;
+import com.project.Ambulance.service.MedicalStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,9 @@ public class DashboardController {
 
     @Autowired
     private HospitalService hospitalService;
+
+    @Autowired
+    private MedicalStaffService medicalStaffService;
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard(Model model) {
@@ -69,7 +74,18 @@ public class DashboardController {
 
     @GetMapping("/medical/profile")
     public String medicalProfile(Model model) {
+        MedicalStaff medicalStaff = medicalStaffService.getAllMedicalStaff()
+                .stream()
+                .findFirst()
+                .orElse(null);
+        model.addAttribute("medicalStaff", medicalStaff);
         return "medical/profile";
+    }
+
+    @PostMapping("/medical/profile")
+    public String updateMedical(@ModelAttribute("medicalStaff") MedicalStaff medicalStaff) {
+        medicalStaffService.save(medicalStaff);
+        return "redirect:/medical/profile";
     }
 
     @GetMapping("/medical/schedule")
