@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Medical Staff</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="~{layout/header :: header}"></div>
+<div class="d-flex">
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <div class="flex-fill p-3">
+        <h2>Quản lý nhân viên y tế</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>Số điện thoại</th>
+                <th>Ảnh đại diện</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${medicalStaffs}">
+                <td th:text="${m.idMedicalStaff}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${m.phone}"></td>
+                <td><img th:src="@{'/uploads/' + ${m.avatar}}" style="width:100px;"></td>
+                <td th:text="${m.status} + ' - ' + ${medicalStatusMap[m.status]}"></td>
+                <td>
+                    <form th:action="@{/admin/status/medical/{id}(id=${m.idMedicalStaff})}" method="post" class="d-flex mb-1">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${medicalStatusMap}"
+                                    th:value="${s.key}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
+                                    th:selected="${s.key == m.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                    <a th:href="@{/admin/medical/{id}/edit(id=${m.idMedicalStaff})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{/admin/medical/{id}/delete(id=${m.idMedicalStaff})}" class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/admin/medical/add}" class="btn btn-primary mt-3">Thêm nhân viên</a>
+    </div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>
