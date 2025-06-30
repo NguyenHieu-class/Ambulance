@@ -2,7 +2,7 @@ package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.repository.MedicalStaffRepository;
-import com.project.Ambulance.constants.FieldName;
+import com.project.Ambulance.constants.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
 
     @Override
     public List<MedicalStaff> getAvailableMedicalStaff() {
-        return medicalStaffRepository.findByStatusOrderByNameAsc(FieldName.MEDICAL_STATUS_AVAILABLE);
+        return medicalStaffRepository.findByStatusOrderByNameAsc(AppConstants.MEDICAL_STATUS_AVAILABLE);
     }
 
     @Override
@@ -71,9 +71,9 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
 
     @Override
     public void updateStatus(int id, int status) {
-        if (status != FieldName.MEDICAL_STATUS_AVAILABLE &&
-            status != FieldName.MEDICAL_STATUS_ON_DUTY &&
-            status != FieldName.MEDICAL_STATUS_SUSPENDED) {
+        if (status != AppConstants.MEDICAL_STATUS_AVAILABLE &&
+            status != AppConstants.MEDICAL_STATUS_ON_DUTY &&
+            status != AppConstants.MEDICAL_STATUS_SUSPENDED) {
             throw new IllegalArgumentException("Invalid medical staff status: " + status);
         }
         medicalStaffRepository.updateStatus(id, status);

@@ -2,7 +2,7 @@ package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.Ambulance;
 import com.project.Ambulance.repository.AmbulanceRepository;
-import com.project.Ambulance.constants.FieldName;
+import com.project.Ambulance.constants.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,10 +61,10 @@ public class AmbulanceServiceImpl implements AmbulanceService {
 
     @Override
     public void updateStatus(int id, int status) {
-        if (status != FieldName.AMBULANCE_STATUS_ACTIVE &&
-            status != FieldName.AMBULANCE_STATUS_MAINTENANCE &&
-            status != FieldName.AMBULANCE_STATUS_BROKEN &&
-            status != FieldName.AMBULANCE_STATUS_DECOMMISSIONED) {
+        if (status != AppConstants.AMBULANCE_STATUS_ACTIVE &&
+            status != AppConstants.AMBULANCE_STATUS_MAINTENANCE &&
+            status != AppConstants.AMBULANCE_STATUS_BROKEN &&
+            status != AppConstants.AMBULANCE_STATUS_DECOMMISSIONED) {
             throw new IllegalArgumentException("Invalid ambulance status: " + status);
         }
         ambulanceRepository.updateStatus(id, status);
@@ -82,6 +82,6 @@ public class AmbulanceServiceImpl implements AmbulanceService {
 
     @Override
     public List<Ambulance> getAvailableAmbulancesWithMedicalEquipment() {
-        return ambulanceRepository.findByMedicalEquipmentTrueAndStatusOrderByNameAsc(FieldName.AMBULANCE_STATUS_ACTIVE);
+        return ambulanceRepository.findByMedicalEquipmentTrueAndStatusOrderByNameAsc(AppConstants.AMBULANCE_STATUS_ACTIVE);
     }
 }

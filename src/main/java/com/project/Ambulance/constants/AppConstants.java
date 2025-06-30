@@ -1,6 +1,6 @@
 package com.project.Ambulance.constants;
 
-public interface FieldName {
+public interface AppConstants {
 	// User Roles
 	public static final int ROLE_ADMIN = 1;
 	public static final int ROLE_MEDICAL_STAFF = 2;
