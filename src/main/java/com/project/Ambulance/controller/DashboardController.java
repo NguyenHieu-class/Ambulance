@@ -446,7 +446,7 @@ public class DashboardController {
 
     @GetMapping("/admin/booking/{id}")
     public String detailBooking(@PathVariable int id, Model model) {
-        Booking booking = bookingService.getBooking(id);
+        Booking booking = bookingService.getBookingById(id);
         model.addAttribute("booking", booking);
         model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
         model.addAttribute("drivers", driverService.getAllDrivers());
