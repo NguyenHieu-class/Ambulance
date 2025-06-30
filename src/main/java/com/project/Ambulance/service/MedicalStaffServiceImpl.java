@@ -2,6 +2,7 @@ package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.repository.MedicalStaffRepository;
+import com.project.Ambulance.constants.FieldName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,11 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
     @Override
     public List<MedicalStaff> getByStatus(int status) {
         return medicalStaffRepository.findByStatusOrderByNameAsc(status);
+    }
+
+    @Override
+    public List<MedicalStaff> getAvailableMedicalStaff() {
+        return medicalStaffRepository.findByStatusOrderByNameAsc(FieldName.MEDICAL_STATUS_AVAILABLE);
     }
 
     @Override

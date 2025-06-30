@@ -14,8 +14,13 @@ public interface FieldName {
 
 	// Trạng thái tài xế: 0 = đang rảnh, 1 = đang làm nhiệm vụ, 2 = tạm ngưng hoạt động
 	public static final int DRIVER_STATUS_AVAILABLE = 0;
-	public static final int DRIVER_STATUS_ON_DUTY = 1;
-	public static final int DRIVER_STATUS_SUSPENDED = 2;
+        public static final int DRIVER_STATUS_ON_DUTY = 1;
+        public static final int DRIVER_STATUS_SUSPENDED = 2;
+
+        // Trạng thái nhân viên y tế: 0 = rảnh, 1 = đang làm việc, 2 = tạm nghỉ
+        public static final int MEDICAL_STATUS_AVAILABLE = 0;
+        public static final int MEDICAL_STATUS_ON_DUTY = 1;
+        public static final int MEDICAL_STATUS_SUSPENDED = 2;
 	
 	// Trạng thái hoạt động xe cứu thương: 0 = hoạt động, 1 = bảo trì, 2 = hỏng, 3 = dừng sử dụng
 	public static final int AMBULANCE_STATUS_ACTIVE = 0;
