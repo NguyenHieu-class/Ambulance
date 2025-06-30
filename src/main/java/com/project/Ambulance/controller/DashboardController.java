@@ -356,13 +356,20 @@ public class DashboardController {
     public String editMedicalForm(@PathVariable int id, Model model) {
         MedicalStaff staff = medicalStaffService.getById(id);
         model.addAttribute("medicalForm", staff);
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("medicalStatusMap", StatusMappingUtil.medicalStatusMap());
         return "pages/medical/update.medical";
     }
 
     @PostMapping("/admin/medical/{id}/edit")
     public String updateMedical(@PathVariable int id,
-                                @ModelAttribute("medicalForm") MedicalStaff staff) {
+                                @ModelAttribute("medicalForm") MedicalStaff staff,
+                                @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) {
         staff.setIdMedicalStaff(id);
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = uploadFile.uploadSingleFile(imageFile);
+            staff.setAvatar(fileName);
+        }
         medicalStaffService.save(staff);
         return "redirect:/admin/medicalStaffs";
     }
