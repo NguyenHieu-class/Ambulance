@@ -118,16 +118,22 @@
                 <input type="text" th:field="*{currentLocation}" class="form-control" />
             </div>
             <div class="col-md-4">
-                <label class="form-label">Mã thương hiệu</label>
-                <input type="number" name="brandAmbulance.idBrandAmbulance" class="form-control" />
+                <label class="form-label">Thương hiệu</label>
+                <select th:field="*{brandAmbulance.idBrand}" class="form-select">
+                    <option th:each="b : ${brandAmbulances}" th:value="${b.idBrand}" th:text="${b.nameBrand}"></option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Mã bệnh viện</label>
-                <input type="number" name="hospital.idHospital" class="form-control" />
+                <label class="form-label">Bệnh viện</label>
+                <select th:field="*{hospital.idHospital}" class="form-select">
+                    <option th:each="h : ${hospitals}" th:value="${h.idHospital}" th:text="${h.name}"></option>
+                </select>
             </div>
             <div class="col-md-4">
-                <label class="form-label">Mã tài xế</label>
-                <input type="number" name="driver.idDriver" class="form-control" />
+                <label class="form-label">Tài xế</label>
+                <select th:field="*{driver.idDriver}" class="form-select">
+                    <option th:each="d : ${drivers}" th:value="${d.idDriver}" th:text="${d.name}"></option>
+                </select>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Lưu</button>
