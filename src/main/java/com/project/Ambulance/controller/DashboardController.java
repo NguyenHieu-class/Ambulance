@@ -178,9 +178,42 @@ public class DashboardController {
 
     @PostMapping("/admin/ambulance/{id}/edit")
     public String updateAmbulance(@PathVariable int id,
-                                  @ModelAttribute("ambulanceForm") Ambulance ambulance,
-                                  @RequestParam("imageFile") MultipartFile imageFile) {
-        ambulance.setIdAmbulance(id);
+                                  @ModelAttribute("ambulanceForm") Ambulance form,
+                                  @RequestParam(value = "imageFile", required = false) MultipartFile imageFile) {
+        Ambulance ambulance = ambulanceService.getAmbulanceById(id);
+        if (ambulance == null) {
+            return "redirect:/admin/ambulances";
+        }
+
+        ambulance.setName(form.getName());
+        ambulance.setLicensePlate(form.getLicensePlate());
+        ambulance.setDescription(form.getDescription());
+        ambulance.setModelYear(form.getModelYear());
+        ambulance.setStatus(form.getStatus());
+        ambulance.setFuelType(form.isFuelType());
+        ambulance.setFuelConsumptionPer100km(form.getFuelConsumptionPer100km());
+        ambulance.setNumberOfSeats(form.getNumberOfSeats());
+        ambulance.setMedicalEquipment(form.isMedicalEquipment());
+        ambulance.setOxygenTank(form.isOxygenTank());
+        ambulance.setDefibrillator(form.isDefibrillator());
+        ambulance.setPatientMonitor(form.isPatientMonitor());
+        ambulance.setStretcher(form.isStretcher());
+        ambulance.setInfusionSupport(form.isInfusionSupport());
+        ambulance.setIncubatorSupport(form.isIncubatorSupport());
+        ambulance.setGpsLocator(form.isGpsLocator());
+        ambulance.setCamera360(form.isCamera360());
+        ambulance.setReverseCamera(form.isReverseCamera());
+        ambulance.setDashCamera(form.isDashCamera());
+        ambulance.setTpms(form.isTpms());
+        ambulance.setImpactSensor(form.isImpactSensor());
+        ambulance.setSpeedWarning(form.isSpeedWarning());
+        ambulance.setAirConditioning(form.isAirConditioning());
+        ambulance.setManualTransmission(form.isManualTransmission());
+        ambulance.setCurrentLocation(form.getCurrentLocation());
+        ambulance.setBrandAmbulance(form.getBrandAmbulance());
+        ambulance.setHospital(form.getHospital());
+        ambulance.setDriver(form.getDriver());
+
         if (imageFile != null && !imageFile.isEmpty()) {
             String fileName = uploadFile.uploadSingleFile(imageFile);
             ambulance.setImage(fileName);
