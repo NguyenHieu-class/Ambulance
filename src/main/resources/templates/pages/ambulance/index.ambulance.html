@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Tên xe</th>
                 <th>Biển số</th>
+                <th>Status</th>
                 <th></th>
             </tr>
             </thead>
@@ -26,7 +27,17 @@
                 <td th:text="${a.idAmbulance}"></td>
                 <td th:text="${a.name}"></td>
                 <td th:text="${a.licensePlate}"></td>
+                <td th:text="${ambulanceStatusMap[a.status]}"></td>
                 <td>
+                    <form th:action="@{'/admin/status/ambulance/' + ${a.idAmbulance}}" method="post" class="d-flex mb-1">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(ambulanceStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == a.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
                     <a th:href="@{'/admin/ambulance/' + ${a.idAmbulance} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{'/admin/ambulance/' + ${a.idAmbulance} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
