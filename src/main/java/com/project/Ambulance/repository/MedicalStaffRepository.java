@@ -48,4 +48,7 @@ public interface MedicalStaffRepository extends JpaRepository<MedicalStaff, Inte
     int countByHospitalIdHospital(int hospitalId);
 
     long count();
+
+    // Lấy danh sách theo nhiều id
+    List<MedicalStaff> findByIdMedicalStaffIn(List<Integer> ids);
 }

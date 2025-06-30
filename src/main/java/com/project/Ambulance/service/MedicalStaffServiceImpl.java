@@ -88,4 +88,9 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
     public long countAll() {
         return medicalStaffRepository.count();
     }
+
+    @Override
+    public List<MedicalStaff> getByIds(List<Integer> ids) {
+        return medicalStaffRepository.findByIdMedicalStaffIn(ids);
+    }
 }

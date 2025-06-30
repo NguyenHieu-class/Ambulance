@@ -39,6 +39,18 @@
                     <option th:each="a : ${ambulances}" th:value="${a.idAmbulance}" th:text="${a.name} + ' - ' + ${a.licensePlate}"></option>
                 </select>
             </div>
+            <div class="col-md-6">
+                <label class="form-label">Tài xế</label>
+                <select name="driverId" class="form-select">
+                    <option th:each="d : ${drivers}" th:value="${d.idDriver}" th:text="${d.name}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Nhân viên y tế</label>
+                <select name="medicalStaffIds" class="form-select" multiple>
+                    <option th:each="m : ${medicalStaff}" th:value="${m.idMedicalStaff}" th:text="${m.name}"></option>
+                </select>
+            </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Lưu</button>
                 <a th:href="@{/admin/bookings}" class="btn btn-secondary">Hủy</a>
