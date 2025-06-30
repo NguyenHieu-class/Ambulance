@@ -63,8 +63,12 @@ public class DriverController {
     @PutMapping("/admin/driver/{id}/status")
     public ResponseEntity<Void> updateDriverStatus(@PathVariable int id,
                                                    @RequestParam int status) {
-        driverService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            driverService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     // === DRIVER APIs ===
@@ -96,8 +100,12 @@ public class DriverController {
     @PutMapping("/driver/status/{id}")
     public ResponseEntity<Void> updateStatus(@PathVariable int id,
                                              @RequestParam int status) {
-        driverService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            driverService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
 

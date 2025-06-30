@@ -1,6 +1,7 @@
 package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.Booking;
+import com.project.Ambulance.constants.FieldName;
 import com.project.Ambulance.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void updateStatus(int id, int status) {
+        if (status != FieldName.STATUS_PENDING &&
+            status != FieldName.STATUS_IN_PROGRESS &&
+            status != FieldName.STATUS_COMPLETED &&
+            status != FieldName.STATUS_CANCELLED) {
+            throw new IllegalArgumentException("Invalid booking status: " + status);
+        }
         bookingRepository.updateStatus(id, status);
     }
 

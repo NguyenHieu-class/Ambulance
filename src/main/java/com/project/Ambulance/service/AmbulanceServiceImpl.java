@@ -61,6 +61,12 @@ public class AmbulanceServiceImpl implements AmbulanceService {
 
     @Override
     public void updateStatus(int id, int status) {
+        if (status != FieldName.AMBULANCE_STATUS_ACTIVE &&
+            status != FieldName.AMBULANCE_STATUS_MAINTENANCE &&
+            status != FieldName.AMBULANCE_STATUS_BROKEN &&
+            status != FieldName.AMBULANCE_STATUS_DECOMMISSIONED) {
+            throw new IllegalArgumentException("Invalid ambulance status: " + status);
+        }
         ambulanceRepository.updateStatus(id, status);
     }
 

@@ -74,8 +74,12 @@ public class MedicalStaffController {
     @PutMapping("/admin/medicalStaff/{id}/status")
     public ResponseEntity<?> updateMedicalStaffStatus(@PathVariable int id,
                                                       @RequestParam int status) {
-        medicalStaffService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            medicalStaffService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     // === MEDICAL STAFF APIs ===
@@ -99,8 +103,12 @@ public class MedicalStaffController {
     @PutMapping("/medical/status/{id}")
     public ResponseEntity<?> updateStatus(@PathVariable int id,
                                           @RequestParam int status) {
-        medicalStaffService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            medicalStaffService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
 
