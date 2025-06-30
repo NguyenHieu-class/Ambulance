@@ -55,8 +55,12 @@ public class AmbulanceController {
     @PutMapping("/admin/ambulance/{id}/status")
     public ResponseEntity<Void> updateAmbulanceStatus(@PathVariable int id,
                                                       @RequestParam int status) {
-        ambulanceService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            ambulanceService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/admin/ambulances/search")

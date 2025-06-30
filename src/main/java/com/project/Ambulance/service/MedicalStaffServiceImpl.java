@@ -71,6 +71,11 @@ public class MedicalStaffServiceImpl implements MedicalStaffService {
 
     @Override
     public void updateStatus(int id, int status) {
+        if (status != FieldName.MEDICAL_STATUS_AVAILABLE &&
+            status != FieldName.MEDICAL_STATUS_ON_DUTY &&
+            status != FieldName.MEDICAL_STATUS_SUSPENDED) {
+            throw new IllegalArgumentException("Invalid medical staff status: " + status);
+        }
         medicalStaffRepository.updateStatus(id, status);
     }
 

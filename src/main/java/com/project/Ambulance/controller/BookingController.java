@@ -56,8 +56,12 @@ public class BookingController {
     @PutMapping("/admin/booking/{id}/status")
     public ResponseEntity<?> updateBookingStatus(@PathVariable int id,
                                                  @RequestParam int status) {
-        bookingService.updateStatus(id, status);
-        return ResponseEntity.ok().build();
+        try {
+            bookingService.updateStatus(id, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/admin/bookings/search")
