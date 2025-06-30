@@ -12,7 +12,7 @@
     <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Thêm tài xế</h2>
-        <form th:action="@{/admin/drivers}" method="post" th:object="${driverForm}" class="row g-3">
+        <form th:action="@{/admin/drivers}" method="post" th:object="${driverForm}" class="row g-3" enctype="multipart/form-data">
             <div class="col-md-6">
                 <label class="form-label">Họ tên</label>
                 <input type="text" th:field="*{name}" class="form-control" required />
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Ảnh đại diện</label>
-                <input type="text" th:field="*{avatar}" class="form-control" />
+                <input type="file" name="imageFile" class="form-control" />
             </div>
             <div class="col-md-6">
                 <label class="form-label">Trạng thái</label>
