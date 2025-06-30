@@ -4,11 +4,13 @@ import com.project.Ambulance.model.Ambulance;
 import com.project.Ambulance.model.Driver;
 import com.project.Ambulance.model.Hospital;
 import com.project.Ambulance.model.MedicalStaff;
+import com.project.Ambulance.model.User;
 import com.project.Ambulance.service.AmbulanceService;
 import com.project.Ambulance.service.BookingService;
 import com.project.Ambulance.service.DriverService;
 import com.project.Ambulance.service.HospitalService;
 import com.project.Ambulance.service.MedicalStaffService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,14 +50,23 @@ public class DashboardController {
     }
 
     @GetMapping("/driver/profile")
-    public String driverProfile(Model model) {
-        Driver driver = driverService.getAllDrivers().stream().findFirst().orElse(null);
+    public String driverProfile(Model model, HttpSession session) {
+        User loggedIn = (User) session.getAttribute("loggedInUser");
+        if (loggedIn == null) {
+            return "redirect:/login";
+        }
+        Driver driver = driverService.getDriverById(loggedIn.getIdUser());
         model.addAttribute("driver", driver);
         return "driver/profile";
     }
 
     @PostMapping("/driver/profile")
-    public String updateDriver(@ModelAttribute("driver") Driver driver) {
+    public String updateDriver(@ModelAttribute("driver") Driver driver, HttpSession session) {
+        User loggedIn = (User) session.getAttribute("loggedInUser");
+        if (loggedIn == null) {
+            return "redirect:/login";
+        }
+        driver.setIdDriver(loggedIn.getIdUser());
         driverService.saveDriver(driver);
         return "redirect:/driver/profile";
     }
