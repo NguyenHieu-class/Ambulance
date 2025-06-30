@@ -33,7 +33,7 @@
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${ambulanceStatusMap}"
                                     th:value="${s.key}"
-                                    th:text="${s.value}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
                                     th:selected="${s.key == a.status}"></option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
@@ -57,13 +57,13 @@
             <tr th:each="d : ${drivers}">
                 <td th:text="${d.idDriver}"></td>
                 <td th:text="${d.name}"></td>
-                <td th:text="${driverStatusMap[d.status]}"></td>
+                <td th:text="${d.status} + ' - ' + ${driverStatusMap[d.status]}"></td>
                 <td>
                     <form th:action="@{/admin/status/driver/{id}(id=${d.idDriver})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${driverStatusMap}"
                                     th:value="${s.key}"
-                                    th:text="${s.value}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
                                     th:selected="${s.key == d.status}"></option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
@@ -93,7 +93,7 @@
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${medicalStatusMap}"
                                     th:value="${s.key}"
-                                    th:text="${s.value}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
                                     th:selected="${s.key == m.status}"></option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
@@ -123,7 +123,7 @@
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${bookingStatusMap}"
                                     th:value="${s.key}"
-                                    th:text="${s.value}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
                                     th:selected="${s.key == b.status}"></option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
