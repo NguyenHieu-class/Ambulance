@@ -9,7 +9,7 @@ import com.project.Ambulance.model.Booking;
 import com.project.Ambulance.model.Province;
 import com.project.Ambulance.model.District;
 import com.project.Ambulance.model.Ward;
-import com.project.Ambulance.constants.AppConstants;
+import com.project.Ambulance.util.StatusMappingUtil;
 import com.project.Ambulance.service.AmbulanceService;
 import com.project.Ambulance.service.BookingService;
 import com.project.Ambulance.service.DriverService;
@@ -19,8 +19,6 @@ import com.project.Ambulance.service.ProvinceService;
 import com.project.Ambulance.service.DistrictService;
 import com.project.Ambulance.service.WardService;
 import java.util.Date;
-import java.util.Map;
-import java.util.LinkedHashMap;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,31 +52,6 @@ public class DashboardController {
     @Autowired
     private WardService wardService;
 
-    private Map<Integer, String> ambulanceStatusMap() {
-        Map<Integer, String> map = new LinkedHashMap<>();
-        map.put(AppConstants.AMBULANCE_STATUS_ACTIVE, "Hoạt động");
-        map.put(AppConstants.AMBULANCE_STATUS_MAINTENANCE, "Bảo trì");
-        map.put(AppConstants.AMBULANCE_STATUS_BROKEN, "Hỏng");
-        map.put(AppConstants.AMBULANCE_STATUS_DECOMMISSIONED, "Dừng sử dụng");
-        return map;
-    }
-
-    private Map<Integer, String> driverStatusMap() {
-        Map<Integer, String> map = new LinkedHashMap<>();
-        map.put(AppConstants.DRIVER_STATUS_AVAILABLE, "Đang rảnh");
-        map.put(AppConstants.DRIVER_STATUS_ON_DUTY, "Đang làm nhiệm vụ");
-        map.put(AppConstants.DRIVER_STATUS_SUSPENDED, "Tạm ngưng hoạt động");
-        return map;
-    }
-
-    private Map<Integer, String> bookingStatusMap() {
-        Map<Integer, String> map = new LinkedHashMap<>();
-        map.put(AppConstants.STATUS_PENDING, "Chờ xác nhận");
-        map.put(AppConstants.STATUS_IN_PROGRESS, "Đang xử lý");
-        map.put(AppConstants.STATUS_COMPLETED, "Hoàn thành");
-        map.put(AppConstants.STATUS_CANCELLED, "Hủy");
-        return map;
-    }
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard(Model model) {
@@ -164,7 +137,7 @@ public class DashboardController {
     @GetMapping("/admin/ambulances")
     public String manageAmbulances(Model model) {
         model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
-        model.addAttribute("ambulanceStatusMap", ambulanceStatusMap());
+        model.addAttribute("ambulanceStatusMap", StatusMappingUtil.ambulanceStatusMap());
         return "pages/ambulance/index.ambulance";
     }
 
@@ -243,7 +216,7 @@ public class DashboardController {
     @GetMapping("/admin/drivers")
     public String manageDrivers(Model model) {
         model.addAttribute("drivers", driverService.getAllDrivers());
-        model.addAttribute("driverStatusMap", driverStatusMap());
+        model.addAttribute("driverStatusMap", StatusMappingUtil.driverStatusMap());
         return "pages/driver/index.driver";
     }
 
@@ -283,7 +256,7 @@ public class DashboardController {
     @GetMapping("/admin/bookings")
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
-        model.addAttribute("bookingStatusMap", bookingStatusMap());
+        model.addAttribute("bookingStatusMap", StatusMappingUtil.bookingStatusMap());
         return "pages/booking/index.booking";
     }
 
