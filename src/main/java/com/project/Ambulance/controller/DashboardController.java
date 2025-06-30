@@ -23,6 +23,7 @@ import com.project.Ambulance.service.BrandAmbulanceService;
 import com.project.Ambulance.service.UploadFile;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
+import java.util.List;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -385,16 +386,27 @@ public class DashboardController {
     public String addBookingForm(Model model) {
         model.addAttribute("bookingForm", new Booking());
         model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
+        model.addAttribute("drivers", driverService.getAllDrivers());
+        model.addAttribute("medicalStaff", medicalStaffService.getAllMedicalStaff());
         return "pages/booking/add.booking";
     }
 
     @PostMapping("/admin/bookings")
-    public String createBooking(@ModelAttribute("bookingForm") Booking booking, HttpSession session) {
+    public String createBooking(@ModelAttribute("bookingForm") Booking booking,
+                                @RequestParam int driverId,
+                                @RequestParam(value = "medicalStaffIds", required = false) List<Integer> medicalStaffIds,
+                                HttpSession session) {
         User loggedIn = (User) session.getAttribute("loggedInUser");
         if (loggedIn != null) {
             booking.setUser(loggedIn);
         }
         booking.setRequestTime(new Date());
+        Driver driver = driverService.getDriverById(driverId);
+        booking.setDriver(driver);
+        if (medicalStaffIds != null && !medicalStaffIds.isEmpty()) {
+            List<MedicalStaff> staff = medicalStaffService.getByIds(medicalStaffIds);
+            booking.setMedicalStaffList(staff);
+        }
         bookingService.saveBooking(booking);
         return "redirect:/admin/bookings";
     }

@@ -1,6 +1,7 @@
 package com.project.Ambulance.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -65,4 +66,22 @@ public class Booking {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+
+    // === Tài xế phụ trách ca này ===
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "driver_id")
+    @JsonIgnore
+    private Driver driver;
+
+    // === Nhân viên y tế tham gia ca này ===
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "booking_medicalstaff",
+        joinColumns = @JoinColumn(name = "booking_id"),
+        inverseJoinColumns = @JoinColumn(name = "medicalstaff_id")
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    private List<MedicalStaff> medicalStaffList;
 }

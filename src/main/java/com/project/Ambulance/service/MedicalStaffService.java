@@ -33,4 +33,6 @@ public interface MedicalStaffService {
     int countByHospital(int hospitalId);
 
     long countAll();
+
+    List<MedicalStaff> getByIds(List<Integer> ids);
 }
