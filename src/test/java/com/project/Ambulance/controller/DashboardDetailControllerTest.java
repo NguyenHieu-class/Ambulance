@@ -72,7 +72,7 @@ class DashboardDetailControllerTest {
 
     @Test
     void bookingDetailReturnsOk() throws Exception {
-        when(bookingService.getBooking(1)).thenReturn(new Booking());
+        when(bookingService.getBookingById(1)).thenReturn(new Booking());
         when(ambulanceService.getAllAmbulances()).thenReturn(Collections.emptyList());
         when(driverService.getAllDrivers()).thenReturn(Collections.emptyList());
         when(medicalStaffService.getAllMedicalStaff()).thenReturn(Collections.emptyList());
