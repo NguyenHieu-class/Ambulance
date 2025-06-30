@@ -31,6 +31,7 @@ public interface MedicalStaffRepository extends JpaRepository<MedicalStaff, Inte
     // Tìm theo trạng thái
     List<MedicalStaff> findByStatusOrderByNameAsc(int status);
 
+
     // Tìm theo bệnh viện
     List<MedicalStaff> findByHospitalIdHospitalOrderByNameAsc(int hospitalId);
 

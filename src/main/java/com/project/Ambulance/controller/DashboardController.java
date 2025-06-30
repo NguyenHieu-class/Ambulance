@@ -111,7 +111,8 @@ public class DashboardController {
 
     @GetMapping("/medical/profile")
     public String medicalProfile(Model model) {
-        MedicalStaff medicalStaff = medicalStaffService.getAllMedicalStaff()
+        MedicalStaff medicalStaff = medicalStaffService
+                .getAvailableMedicalStaff()
                 .stream()
                 .findFirst()
                 .orElse(null);

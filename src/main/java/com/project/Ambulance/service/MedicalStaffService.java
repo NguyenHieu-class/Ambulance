@@ -12,6 +12,8 @@ public interface MedicalStaffService {
 
     List<MedicalStaff> getByStatus(int status);
 
+    List<MedicalStaff> getAvailableMedicalStaff();
+
     List<MedicalStaff> getByHospitalAndStatus(int hospitalId, int status);
 
     List<MedicalStaff> searchByName(String name);
