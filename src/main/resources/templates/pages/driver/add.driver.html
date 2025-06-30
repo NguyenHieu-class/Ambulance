@@ -43,7 +43,11 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Trạng thái</label>
-                <input type="number" th:field="*{status}" class="form-control" />
+                <select th:field="*{status}" class="form-select">
+                    <option th:each="s : ${driverStatusMap}"
+                            th:value="${s.key}"
+                            th:text="${s.key} + ' - ' + ${s.value}"></option>
+                </select>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Bệnh viện</label>

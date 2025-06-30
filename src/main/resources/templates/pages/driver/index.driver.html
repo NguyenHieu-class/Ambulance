@@ -29,13 +29,13 @@
                 <td th:text="${d.name}"></td>
                 <td th:text="${d.phone}"></td>
                 <td><img th:src="@{'/uploads/' + ${d.avatar}}" style="width:100px;"></td>
-                <td th:text="${driverStatusMap[d.status]}"></td>
+                <td th:text="${d.status} + ' - ' + ${driverStatusMap[d.status]}"></td>
                 <td>
                     <form th:action="@{/admin/status/driver/{id}(id=${d.idDriver})}" method="post" class="d-flex mb-1">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${driverStatusMap}"
                                     th:value="${s.key}"
-                                    th:text="${s.value}"
+                                    th:text="${s.key} + ' - ' + ${s.value}"
                                     th:selected="${s.key == d.status}"></option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
