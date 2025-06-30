@@ -34,18 +34,7 @@
             </tbody>
         </table>
 
-        <h4 class="mt-4">Thêm xe mới</h4>
-        <form th:action="@{/admin/ambulances}" method="post" th:object="${ambulanceForm}" class="row g-3">
-            <div class="col-md-4">
-                <input type="text" th:field="*{name}" class="form-control" placeholder="Tên xe" required />
-            </div>
-            <div class="col-md-4">
-                <input type="text" th:field="*{licensePlate}" class="form-control" placeholder="Biển số" required />
-            </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </form>
+        <a th:href="@{/admin/ambulance/add}" class="btn btn-primary mt-3">Thêm xe mới</a>
     </div>
 </div>
 <div th:replace="layout/footer :: footer"></div>

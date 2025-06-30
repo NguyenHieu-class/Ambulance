@@ -34,18 +34,7 @@
             </tbody>
         </table>
 
-        <h4 class="mt-4">Thêm tài xế</h4>
-        <form th:action="@{/admin/drivers}" method="post" th:object="${driverForm}" class="row g-3">
-            <div class="col-md-4">
-                <input type="text" th:field="*{name}" class="form-control" placeholder="Họ tên" required />
-            </div>
-            <div class="col-md-4">
-                <input type="text" th:field="*{phone}" class="form-control" placeholder="SĐT" required />
-            </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-        </form>
+        <a th:href="@{/admin/driver/add}" class="btn btn-primary mt-3">Thêm tài xế</a>
     </div>
 </div>
 <div th:replace="layout/footer :: footer"></div>

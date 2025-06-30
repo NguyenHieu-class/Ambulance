@@ -81,8 +81,13 @@ public class DashboardController {
     @GetMapping("/admin/ambulances")
     public String manageAmbulances(Model model) {
         model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
-        model.addAttribute("ambulanceForm", new Ambulance());
         return "admin/ambulances";
+    }
+
+    @GetMapping("/admin/ambulance/add")
+    public String addAmbulanceForm(Model model) {
+        model.addAttribute("ambulanceForm", new Ambulance());
+        return "admin/ambulance-add";
     }
 
     @PostMapping("/admin/ambulances")
@@ -115,8 +120,13 @@ public class DashboardController {
     @GetMapping("/admin/hospitals")
     public String manageHospitals(Model model) {
         model.addAttribute("hospitals", hospitalService.getAllHospitals());
-        model.addAttribute("hospitalForm", new Hospital());
         return "admin/hospitals";
+    }
+
+    @GetMapping("/admin/hospital/add")
+    public String addHospitalForm(Model model) {
+        model.addAttribute("hospitalForm", new Hospital());
+        return "admin/hospital-add";
     }
 
     @PostMapping("/admin/hospitals")
@@ -149,8 +159,13 @@ public class DashboardController {
     @GetMapping("/admin/drivers")
     public String manageDrivers(Model model) {
         model.addAttribute("drivers", driverService.getAllDrivers());
-        model.addAttribute("driverForm", new Driver());
         return "admin/drivers";
+    }
+
+    @GetMapping("/admin/driver/add")
+    public String addDriverForm(Model model) {
+        model.addAttribute("driverForm", new Driver());
+        return "admin/driver-add";
     }
 
     @PostMapping("/admin/drivers")
