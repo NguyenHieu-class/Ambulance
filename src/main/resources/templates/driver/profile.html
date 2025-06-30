@@ -7,9 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-<div th:replace="layout/header :: header"></div>
+<div th:replace="~{layout/header :: header}"></div>
 <div class="d-flex">
-    <div th:replace="layout/sidebar :: sidebar"></div>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Thông tin cá nhân</h2>
         <form th:action="@{/driver/profile}" method="post" th:object="${driver}" class="needs-validation" novalidate>
@@ -37,7 +37,7 @@
         </form>
     </div>
 </div>
-<div th:replace="layout/footer :: footer"></div>
+<div th:replace="~{layout/footer :: footer}"></div>
 <script th:src="@{/js/dashboard.js}"></script>
 </body>
 </html>

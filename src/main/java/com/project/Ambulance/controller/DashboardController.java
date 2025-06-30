@@ -108,13 +108,13 @@ public class DashboardController {
     @GetMapping("/admin/ambulances")
     public String manageAmbulances(Model model) {
         model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
-        return "admin/ambulances";
+        return "pages/ambulance/index.ambulance";
     }
 
     @GetMapping("/admin/ambulance/add")
     public String addAmbulanceForm(Model model) {
         model.addAttribute("ambulanceForm", new Ambulance());
-        return "admin/ambulance-add";
+        return "pages/ambulance/add.ambulance";
     }
 
     @PostMapping("/admin/ambulances")
@@ -133,7 +133,7 @@ public class DashboardController {
     public String editAmbulanceForm(@PathVariable int id, Model model) {
         Ambulance ambulance = ambulanceService.getAmbulanceById(id);
         model.addAttribute("ambulanceForm", ambulance);
-        return "admin/ambulance-edit";
+        return "pages/ambulance/update.ambulance";
     }
 
     @PostMapping("/admin/ambulance/{id}/edit")
@@ -147,13 +147,13 @@ public class DashboardController {
     @GetMapping("/admin/hospitals")
     public String manageHospitals(Model model) {
         model.addAttribute("hospitals", hospitalService.getAllHospitals());
-        return "admin/hospitals";
+        return "pages/hospital/index.hospital";
     }
 
     @GetMapping("/admin/hospital/add")
     public String addHospitalForm(Model model) {
         model.addAttribute("hospitalForm", new Hospital());
-        return "admin/hospital-add";
+        return "pages/hospital/add.hospital";
     }
 
     @PostMapping("/admin/hospitals")
@@ -172,7 +172,7 @@ public class DashboardController {
     public String editHospitalForm(@PathVariable int id, Model model) {
         Hospital hospital = hospitalService.getHospitalById(id);
         model.addAttribute("hospitalForm", hospital);
-        return "admin/hospital-edit";
+        return "pages/hospital/update.hospital";
     }
 
     @PostMapping("/admin/hospital/{id}/edit")
@@ -186,13 +186,13 @@ public class DashboardController {
     @GetMapping("/admin/drivers")
     public String manageDrivers(Model model) {
         model.addAttribute("drivers", driverService.getAllDrivers());
-        return "admin/drivers";
+        return "pages/driver/index.driver";
     }
 
     @GetMapping("/admin/driver/add")
     public String addDriverForm(Model model) {
         model.addAttribute("driverForm", new Driver());
-        return "admin/driver-add";
+        return "pages/driver/add.driver";
     }
 
     @PostMapping("/admin/drivers")
@@ -211,7 +211,7 @@ public class DashboardController {
     public String editDriverForm(@PathVariable int id, Model model) {
         Driver driver = driverService.getDriverById(id);
         model.addAttribute("driverForm", driver);
-        return "admin/driver-edit";
+        return "pages/driver/update.driver";
     }
 
     @PostMapping("/admin/driver/{id}/edit")
@@ -225,6 +225,6 @@ public class DashboardController {
     @GetMapping("/admin/bookings")
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
-        return "admin/booking-history";
+        return "pages/booking/index.booking";
     }
 }
