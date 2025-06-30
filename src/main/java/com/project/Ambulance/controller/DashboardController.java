@@ -9,6 +9,7 @@ import com.project.Ambulance.model.Booking;
 import com.project.Ambulance.model.Province;
 import com.project.Ambulance.model.District;
 import com.project.Ambulance.model.Ward;
+import com.project.Ambulance.model.BrandAmbulance;
 import com.project.Ambulance.util.StatusMappingUtil;
 import com.project.Ambulance.service.AmbulanceService;
 import com.project.Ambulance.service.BookingService;
@@ -18,6 +19,7 @@ import com.project.Ambulance.service.MedicalStaffService;
 import com.project.Ambulance.service.ProvinceService;
 import com.project.Ambulance.service.DistrictService;
 import com.project.Ambulance.service.WardService;
+import com.project.Ambulance.service.BrandAmbulanceService;
 import com.project.Ambulance.service.UploadFile;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
@@ -53,6 +55,9 @@ public class DashboardController {
 
     @Autowired
     private WardService wardService;
+
+    @Autowired
+    private BrandAmbulanceService brandAmbulanceService;
 
     @Autowired
     private UploadFile uploadFile;
@@ -448,5 +453,45 @@ public class DashboardController {
         ward.setIdWard(id);
         wardService.saveWard(ward);
         return "redirect:/admin/wards";
+    }
+
+    // === Brand Ambulance Management ===
+    @GetMapping("/admin/brand-ambulances")
+    public String manageBrands(Model model) {
+        model.addAttribute("brands", brandAmbulanceService.getAllBrands());
+        return "pages/brand/index.brand";
+    }
+
+    @GetMapping("/admin/brand-ambulance/add")
+    public String addBrandForm(Model model) {
+        model.addAttribute("brandForm", new BrandAmbulance());
+        return "pages/brand/add.brand";
+    }
+
+    @PostMapping("/admin/brand-ambulances")
+    public String createBrand(@ModelAttribute("brandForm") BrandAmbulance brand) {
+        brandAmbulanceService.saveBrand(brand);
+        return "redirect:/admin/brand-ambulances";
+    }
+
+    @GetMapping("/admin/brand-ambulance/{id}/edit")
+    public String editBrandForm(@PathVariable int id, Model model) {
+        BrandAmbulance brand = brandAmbulanceService.getBrandById(id);
+        model.addAttribute("brandForm", brand);
+        return "pages/brand/update.brand";
+    }
+
+    @PostMapping("/admin/brand-ambulance/{id}/edit")
+    public String updateBrand(@PathVariable int id,
+                              @ModelAttribute("brandForm") BrandAmbulance brand) {
+        brand.setIdBrand(id);
+        brandAmbulanceService.saveBrand(brand);
+        return "redirect:/admin/brand-ambulances";
+    }
+
+    @GetMapping("/admin/brand-ambulance/{id}/delete")
+    public String deleteBrand(@PathVariable int id) {
+        brandAmbulanceService.deleteBrand(id);
+        return "redirect:/admin/brand-ambulances";
     }
 }
