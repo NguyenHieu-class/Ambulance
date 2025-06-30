@@ -46,8 +46,10 @@
                 <input type="number" th:field="*{status}" class="form-control" />
             </div>
             <div class="col-md-6">
-                <label class="form-label">Mã bệnh viện</label>
-                <input type="number" name="hospital.idHospital" class="form-control" />
+                <label class="form-label">Bệnh viện</label>
+                <select th:field="*{hospital.idHospital}" class="form-select">
+                    <option th:each="h : ${hospitals}" th:value="${h.idHospital}" th:text="${h.name}"></option>
+                </select>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Lưu</button>
