@@ -5,6 +5,7 @@ import com.project.Ambulance.model.Driver;
 import com.project.Ambulance.model.Hospital;
 import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.model.User;
+import com.project.Ambulance.model.Booking;
 import com.project.Ambulance.model.Province;
 import com.project.Ambulance.model.District;
 import com.project.Ambulance.model.Ward;
@@ -16,6 +17,7 @@ import com.project.Ambulance.service.MedicalStaffService;
 import com.project.Ambulance.service.ProvinceService;
 import com.project.Ambulance.service.DistrictService;
 import com.project.Ambulance.service.WardService;
+import java.util.Date;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,6 +76,11 @@ public class DashboardController {
         if (driver == null) {
             driver = new Driver();
             driver.setIdDriver(loggedIn.getIdUser());
+            driver.setName(loggedIn.getNameDisplay());
+            driver.setPhone(loggedIn.getPhone());
+            driver.setEmail(loggedIn.getEmail());
+            driver.setDateOfBirth(loggedIn.getDateOfBirth());
+            driver.setSex(loggedIn.isSex());
         }
         model.addAttribute("driver", driver);
         return "driver/profile";
@@ -245,6 +252,24 @@ public class DashboardController {
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
         return "pages/booking/index.booking";
+    }
+
+    @GetMapping("/admin/booking/add")
+    public String addBookingForm(Model model) {
+        model.addAttribute("bookingForm", new Booking());
+        model.addAttribute("ambulances", ambulanceService.getAllAmbulances());
+        return "pages/booking/add.booking";
+    }
+
+    @PostMapping("/admin/bookings")
+    public String createBooking(@ModelAttribute("bookingForm") Booking booking, HttpSession session) {
+        User loggedIn = (User) session.getAttribute("loggedInUser");
+        if (loggedIn != null) {
+            booking.setUser(loggedIn);
+        }
+        booking.setRequestTime(new Date());
+        bookingService.saveBooking(booking);
+        return "redirect:/admin/bookings";
     }
 
     // === Province Management ===
