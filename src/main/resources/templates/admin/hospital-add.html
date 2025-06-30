@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Hospital</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="d-flex">
+    <div th:replace="layout/sidebar :: sidebar"></div>
+    <div class="flex-fill p-3">
+        <h2>Thêm bệnh viện</h2>
+        <form th:action="@{/admin/hospitals}" method="post" th:object="${hospitalForm}" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Tên</label>
+                <input type="text" th:field="*{name}" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Điện thoại</label>
+                <input type="text" th:field="*{phone}" class="form-control" />
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Địa chỉ</label>
+                <input type="text" th:field="*{addressDetail}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" th:field="*{email}" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Giám đốc</label>
+                <input type="text" th:field="*{directorName}" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Mã tỉnh</label>
+                <input type="number" name="province.idProvince" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Mã huyện</label>
+                <input type="number" name="district.idDistrict" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Mã phường</label>
+                <input type="number" name="ward.idWard" class="form-control" />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a th:href="@{/admin/hospitals}" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>
