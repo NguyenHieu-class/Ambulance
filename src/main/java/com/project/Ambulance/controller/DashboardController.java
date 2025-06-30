@@ -71,6 +71,10 @@ public class DashboardController {
             return "redirect:/login";
         }
         Driver driver = driverService.getDriverById(loggedIn.getIdUser());
+        if (driver == null) {
+            driver = new Driver();
+            driver.setIdDriver(loggedIn.getIdUser());
+        }
         model.addAttribute("driver", driver);
         return "driver/profile";
     }
