@@ -20,6 +20,8 @@
                 <th>Người yêu cầu</th>
                 <th>Số điện thoại</th>
                 <th>Địa điểm đón</th>
+                <th>Status</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +30,18 @@
                 <td th:text="${b.requesterName}"></td>
                 <td th:text="${b.phone}"></td>
                 <td th:text="${b.pickupAddress}"></td>
+                <td th:text="${bookingStatusMap[b.status]}"></td>
+                <td>
+                    <form th:action="@{'/admin/status/booking/' + ${b.idBooking}}" method="post" class="d-flex">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(bookingStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == b.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

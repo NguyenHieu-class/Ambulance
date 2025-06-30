@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Họ tên</th>
                 <th>Số điện thoại</th>
+                <th>Status</th>
                 <th></th>
             </tr>
             </thead>
@@ -26,7 +27,17 @@
                 <td th:text="${d.idDriver}"></td>
                 <td th:text="${d.name}"></td>
                 <td th:text="${d.phone}"></td>
+                <td th:text="${driverStatusMap[d.status]}"></td>
                 <td>
+                    <form th:action="@{'/admin/status/driver/' + ${d.idDriver}}" method="post" class="d-flex mb-1">
+                        <select class="form-select form-select-sm me-2" name="status">
+                            <option th:each="s : ${#maps.entries(driverStatusMap)}"
+                                    th:value="${s.key}"
+                                    th:text="${s.value}"
+                                    th:selected="${s.key == d.status}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">Lưu</button>
+                    </form>
                     <a th:href="@{'/admin/driver/' + ${d.idDriver} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
                     <a th:href="@{'/admin/driver/' + ${d.idDriver} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
