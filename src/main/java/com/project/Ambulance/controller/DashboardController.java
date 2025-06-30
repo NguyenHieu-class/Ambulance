@@ -154,6 +154,9 @@ public class DashboardController {
     @GetMapping("/admin/ambulance/add")
     public String addAmbulanceForm(Model model) {
         model.addAttribute("ambulanceForm", new Ambulance());
+        model.addAttribute("brandAmbulances", brandAmbulanceService.getAllBrands());
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("drivers", driverService.getAllDrivers());
         return "pages/ambulance/add.ambulance";
     }
 
@@ -178,6 +181,9 @@ public class DashboardController {
     public String editAmbulanceForm(@PathVariable int id, Model model) {
         Ambulance ambulance = ambulanceService.getAmbulanceById(id);
         model.addAttribute("ambulanceForm", ambulance);
+        model.addAttribute("brandAmbulances", brandAmbulanceService.getAllBrands());
+        model.addAttribute("hospitals", hospitalService.getAllHospitals());
+        model.addAttribute("drivers", driverService.getAllDrivers());
         return "pages/ambulance/update.ambulance";
     }
 
