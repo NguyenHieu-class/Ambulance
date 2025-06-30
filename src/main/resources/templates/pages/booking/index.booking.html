@@ -34,7 +34,7 @@
                 <td>
                     <form th:action="@{/admin/status/booking/{id}(id=${b.idBooking})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
-                            <option th:each="s : ${#maps.entries(bookingStatusMap)}"
+                            <option th:each="s : ${bookingStatusMap}"
                                     th:value="${s.key}"
                                     th:text="${s.value}"
                                     th:selected="${s.key == b.status}"></option>

@@ -31,7 +31,7 @@
                 <td>
                     <form th:action="@{/admin/status/driver/{id}(id=${d.idDriver})}" method="post" class="d-flex mb-1">
                         <select class="form-select form-select-sm me-2" name="status">
-                            <option th:each="s : ${#maps.entries(driverStatusMap)}"
+                            <option th:each="s : ${driverStatusMap}"
                                     th:value="${s.key}"
                                     th:text="${s.value}"
                                     th:selected="${s.key == d.status}"></option>
