@@ -3,8 +3,8 @@
 <title>Web thuê xe - Trang chủ</title>
 <link rel="icon" th:href="@{/images/icon-logo.png}" type="images/x-icon">
 
-<head th:replace="~{pages/layout/header-css-js :: header-css-js}">
-<!-- th:replace="~{pages/layout/header-css-js :: header-css-js}" -->
+<head th:replace="~{layout/header-css-js :: header-css-js}">
+<!-- th:replace="~{layout/header-css-js :: header-css-js}" -->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +26,9 @@
 </script>
 <body>
 
-	<nav th:replace="~{pages/layout/header :: header}"></nav>
+        <nav th:replace="~{layout/header :: header}"></nav>
 	<div class="col-md-12" style="padding: 0px;">
-		<div th:replace="~{pages/layout/search-car ::search-car}"></div>
+                <div th:replace="~{layout/search-car ::search-car}"></div>
 	</div>
 	<div class="container" style="padding: 0px;">
 		<div class="row">
@@ -323,7 +323,7 @@
 	</div>
 
 </body>
-<footer th:replace="~{pages/layout/footer :: footer}"></footer>
+<footer th:replace="~{layout/footer :: footer}"></footer>
 
 <script th:src="@{/js/main.js}"></script>
 <script

@@ -7,9 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
-<div th:replace="layout/header :: header"></div>
+<div th:replace="~{layout/header :: header}"></div>
 <div class="d-flex">
-    <div th:replace="layout/sidebar :: sidebar"></div>
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Quản lý bệnh viện</h2>
         <table class="table table-bordered mt-3">
@@ -37,7 +37,7 @@
         <a th:href="@{/admin/hospital/add}" class="btn btn-primary mt-3">Thêm bệnh viện</a>
     </div>
 </div>
-<div th:replace="layout/footer :: footer"></div>
+<div th:replace="~{layout/footer :: footer}"></div>
 <script th:src="@{/js/dashboard.js}"></script>
 </body>
 </html>
