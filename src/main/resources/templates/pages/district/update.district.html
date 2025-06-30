@@ -12,7 +12,7 @@
     <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Cập nhật huyện</h2>
-        <form th:action="@{'/admin/district/' + ${districtForm.idDistrict} + '/edit'}" method="post" th:object="${districtForm}" class="row g-3">
+        <form th:action="@{/admin/district/{id}/edit(id=${districtForm.idDistrict})}" method="post" th:object="${districtForm}" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tên huyện</label>
                 <input type="text" th:field="*{nameDistrict}" class="form-control" required />

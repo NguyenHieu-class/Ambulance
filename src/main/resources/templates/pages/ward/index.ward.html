@@ -27,8 +27,8 @@
                 <td th:text="${w.nameWard}"></td>
                 <td th:text="${w.district.nameDistrict}"></td>
                 <td>
-                    <a th:href="@{'/admin/ward/' + ${w.idWard} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
-                    <a th:href="@{'/admin/ward/' + ${w.idWard} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
+                    <a th:href="@{/admin/ward/{id}/edit(id=${w.idWard})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{/admin/ward/{id}/delete(id=${w.idWard})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
             </tr>
             </tbody>

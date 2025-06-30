@@ -27,8 +27,8 @@
                 <td th:text="${h.name}"></td>
                 <td th:text="${h.phone}"></td>
                 <td>
-                    <a th:href="@{'/admin/hospital/' + ${h.idHospital} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
-                    <a th:href="@{'/admin/hospital/' + ${h.idHospital} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
+                    <a th:href="@{/admin/hospital/{id}/edit(id=${h.idHospital})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{/admin/hospital/{id}/delete(id=${h.idHospital})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
             </tr>
             </tbody>

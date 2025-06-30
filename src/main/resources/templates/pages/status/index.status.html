@@ -29,7 +29,7 @@
                 <td th:text="${a.name}"></td>
                 <td th:text="${ambulanceStatusMap[a.status]}"></td>
                 <td>
-                    <form th:action="@{'/admin/status/ambulance/' + ${a.idAmbulance}}" method="post" class="d-flex">
+                    <form th:action="@{/admin/status/ambulance/{id}(id=${a.idAmbulance})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${#maps.entries(ambulanceStatusMap)}"
                                     th:value="${s.key}"
@@ -59,7 +59,7 @@
                 <td th:text="${d.name}"></td>
                 <td th:text="${driverStatusMap[d.status]}"></td>
                 <td>
-                    <form th:action="@{'/admin/status/driver/' + ${d.idDriver}}" method="post" class="d-flex">
+                    <form th:action="@{/admin/status/driver/{id}(id=${d.idDriver})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${#maps.entries(driverStatusMap)}"
                                     th:value="${s.key}"
@@ -89,7 +89,7 @@
                 <td th:text="${m.name}"></td>
                 <td th:text="${medicalStatusMap[m.status]}"></td>
                 <td>
-                    <form th:action="@{'/admin/status/medical/' + ${m.idMedicalStaff}}" method="post" class="d-flex">
+                    <form th:action="@{/admin/status/medical/{id}(id=${m.idMedicalStaff})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${#maps.entries(medicalStatusMap)}"
                                     th:value="${s.key}"
@@ -119,7 +119,7 @@
                 <td th:text="${b.requesterName}"></td>
                 <td th:text="${bookingStatusMap[b.status]}"></td>
                 <td>
-                    <form th:action="@{'/admin/status/booking/' + ${b.idBooking}}" method="post" class="d-flex">
+                    <form th:action="@{/admin/status/booking/{id}(id=${b.idBooking})}" method="post" class="d-flex">
                         <select class="form-select form-select-sm me-2" name="status">
                             <option th:each="s : ${#maps.entries(bookingStatusMap)}"
                                     th:value="${s.key}"

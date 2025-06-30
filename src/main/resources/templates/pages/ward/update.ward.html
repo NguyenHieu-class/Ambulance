@@ -12,7 +12,7 @@
     <div th:replace="~{layout/sidebar :: sidebar}"></div>
     <div class="flex-fill p-3">
         <h2>Cập nhật phường</h2>
-        <form th:action="@{'/admin/ward/' + ${wardForm.idWard} + '/edit'}" method="post" th:object="${wardForm}" class="row g-3">
+        <form th:action="@{/admin/ward/{id}/edit(id=${wardForm.idWard})}" method="post" th:object="${wardForm}" class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tên phường</label>
                 <input type="text" th:field="*{nameWard}" class="form-control" required />

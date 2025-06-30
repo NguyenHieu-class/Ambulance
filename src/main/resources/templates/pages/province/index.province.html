@@ -27,8 +27,8 @@
                 <td th:text="${p.nameProvince}"></td>
                 <td th:text="${p.zipCode}"></td>
                 <td>
-                    <a th:href="@{'/admin/province/' + ${p.idProvince} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
-                    <a th:href="@{'/admin/province/' + ${p.idProvince} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
+                    <a th:href="@{/admin/province/{id}/edit(id=${p.idProvince})}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{/admin/province/{id}/delete(id=${p.idProvince})}" class="btn btn-sm btn-danger">Xóa</a>
                 </td>
             </tr>
             </tbody>
