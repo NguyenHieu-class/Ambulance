@@ -2,7 +2,7 @@ package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.Driver;
 import com.project.Ambulance.repository.DriverRepository;
-import com.project.Ambulance.constants.FieldName;
+import com.project.Ambulance.constants.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,9 +66,9 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void updateStatus(int id, int status) {
-        if (status != FieldName.DRIVER_STATUS_AVAILABLE &&
-            status != FieldName.DRIVER_STATUS_ON_DUTY &&
-            status != FieldName.DRIVER_STATUS_SUSPENDED) {
+        if (status != AppConstants.DRIVER_STATUS_AVAILABLE &&
+            status != AppConstants.DRIVER_STATUS_ON_DUTY &&
+            status != AppConstants.DRIVER_STATUS_SUSPENDED) {
             throw new IllegalArgumentException("Invalid driver status: " + status);
         }
         driverRepository.updateStatus(id, status);

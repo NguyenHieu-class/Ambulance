@@ -2,7 +2,7 @@ package com.project.Ambulance.controller;
 
 import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.service.MedicalStaffService;
-import com.project.Ambulance.constants.FieldName;
+import com.project.Ambulance.constants.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +35,7 @@ public class MedicalStaffController {
     @PostMapping("/admin/medicalStaffs")
     public ResponseEntity<?> createMedicalStaff(@RequestBody MedicalStaff staff) {
         // Newly created staff are available by default
-        staff.setStatus(FieldName.MEDICAL_STATUS_AVAILABLE);
+        staff.setStatus(AppConstants.MEDICAL_STATUS_AVAILABLE);
         MedicalStaff saved = medicalStaffService.save(staff);
         return ResponseEntity.ok(saved);
     }
