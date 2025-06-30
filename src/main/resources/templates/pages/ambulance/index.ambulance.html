@@ -15,11 +15,12 @@
         <table class="table table-bordered mt-3">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Tên xe</th>
-                <th>Biển số</th>
-                <th>Status</th>
-                <th></th>
+                <th style="width: 5%;">ID</th>
+                <th style="width: 20%;">Tên xe</th>
+                <th style="width: 15%;">Biển số</th>
+                <th style="width: 15%;">Ảnh</th>
+                <th style="width: 15%;">Status</th>
+                <th style="width: 30%;"></th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +28,9 @@
                 <td th:text="${a.idAmbulance}"></td>
                 <td th:text="${a.name}"></td>
                 <td th:text="${a.licensePlate}"></td>
+                <td>
+                    <img th:src="@{'/uploads/' + ${a.image}}" alt="Ảnh xe" style="width: 100px; height: auto;"/>
+                </td>
                 <td th:text="${ambulanceStatusMap[a.status]}"></td>
                 <td>
                     <form th:action="@{/admin/status/ambulance/{id}(id=${a.idAmbulance})}" method="post" class="d-flex mb-1">
