@@ -5,11 +5,17 @@ import com.project.Ambulance.model.Driver;
 import com.project.Ambulance.model.Hospital;
 import com.project.Ambulance.model.MedicalStaff;
 import com.project.Ambulance.model.User;
+import com.project.Ambulance.model.Province;
+import com.project.Ambulance.model.District;
+import com.project.Ambulance.model.Ward;
 import com.project.Ambulance.service.AmbulanceService;
 import com.project.Ambulance.service.BookingService;
 import com.project.Ambulance.service.DriverService;
 import com.project.Ambulance.service.HospitalService;
 import com.project.Ambulance.service.MedicalStaffService;
+import com.project.Ambulance.service.ProvinceService;
+import com.project.Ambulance.service.DistrictService;
+import com.project.Ambulance.service.WardService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +39,15 @@ public class DashboardController {
 
     @Autowired
     private MedicalStaffService medicalStaffService;
+
+    @Autowired
+    private ProvinceService provinceService;
+
+    @Autowired
+    private DistrictService districtService;
+
+    @Autowired
+    private WardService wardService;
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard(Model model) {
@@ -226,5 +241,129 @@ public class DashboardController {
     public String bookingHistory(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
         return "pages/booking/index.booking";
+    }
+
+    // === Province Management ===
+    @GetMapping("/admin/provinces")
+    public String manageProvinces(Model model) {
+        model.addAttribute("provinces", provinceService.getAllProvinceOrderByName());
+        return "pages/province/index.province";
+    }
+
+    @GetMapping("/admin/province/add")
+    public String addProvinceForm(Model model) {
+        model.addAttribute("provinceForm", new Province());
+        return "pages/province/add.province";
+    }
+
+    @PostMapping("/admin/provinces")
+    public String createProvince(@ModelAttribute("provinceForm") Province province) {
+        provinceService.saveProvince(province);
+        return "redirect:/admin/provinces";
+    }
+
+    @GetMapping("/admin/province/{id}/delete")
+    public String deleteProvince(@PathVariable int id) {
+        provinceService.deleteProvince(id);
+        return "redirect:/admin/provinces";
+    }
+
+    @GetMapping("/admin/province/{id}/edit")
+    public String editProvinceForm(@PathVariable int id, Model model) {
+        Province province = provinceService.getProvince(id);
+        model.addAttribute("provinceForm", province);
+        return "pages/province/update.province";
+    }
+
+    @PostMapping("/admin/province/{id}/edit")
+    public String updateProvince(@PathVariable int id,
+                                 @ModelAttribute("provinceForm") Province province) {
+        province.setIdProvince(id);
+        provinceService.saveProvince(province);
+        return "redirect:/admin/provinces";
+    }
+
+    // === District Management ===
+    @GetMapping("/admin/districts")
+    public String manageDistricts(Model model) {
+        model.addAttribute("districts", districtService.getAllDistrict());
+        return "pages/district/index.district";
+    }
+
+    @GetMapping("/admin/district/add")
+    public String addDistrictForm(Model model) {
+        model.addAttribute("districtForm", new District());
+        model.addAttribute("provinces", provinceService.getAllProvinceOrderByName());
+        return "pages/district/add.district";
+    }
+
+    @PostMapping("/admin/districts")
+    public String createDistrict(@ModelAttribute("districtForm") District district) {
+        districtService.saveDistrict(district);
+        return "redirect:/admin/districts";
+    }
+
+    @GetMapping("/admin/district/{id}/delete")
+    public String deleteDistrict(@PathVariable int id) {
+        districtService.deleteDistrict(id);
+        return "redirect:/admin/districts";
+    }
+
+    @GetMapping("/admin/district/{id}/edit")
+    public String editDistrictForm(@PathVariable int id, Model model) {
+        District district = districtService.getDistrict(id);
+        model.addAttribute("districtForm", district);
+        model.addAttribute("provinces", provinceService.getAllProvinceOrderByName());
+        return "pages/district/update.district";
+    }
+
+    @PostMapping("/admin/district/{id}/edit")
+    public String updateDistrict(@PathVariable int id,
+                                 @ModelAttribute("districtForm") District district) {
+        district.setIdDistrict(id);
+        districtService.saveDistrict(district);
+        return "redirect:/admin/districts";
+    }
+
+    // === Ward Management ===
+    @GetMapping("/admin/wards")
+    public String manageWards(Model model) {
+        model.addAttribute("wards", wardService.getAllWard());
+        return "pages/ward/index.ward";
+    }
+
+    @GetMapping("/admin/ward/add")
+    public String addWardForm(Model model) {
+        model.addAttribute("wardForm", new Ward());
+        model.addAttribute("districts", districtService.getAllDistrict());
+        return "pages/ward/add.ward";
+    }
+
+    @PostMapping("/admin/wards")
+    public String createWard(@ModelAttribute("wardForm") Ward ward) {
+        wardService.saveWard(ward);
+        return "redirect:/admin/wards";
+    }
+
+    @GetMapping("/admin/ward/{id}/delete")
+    public String deleteWard(@PathVariable int id) {
+        wardService.deleteWard(id);
+        return "redirect:/admin/wards";
+    }
+
+    @GetMapping("/admin/ward/{id}/edit")
+    public String editWardForm(@PathVariable int id, Model model) {
+        Ward ward = wardService.getAWard(id);
+        model.addAttribute("wardForm", ward);
+        model.addAttribute("districts", districtService.getAllDistrict());
+        return "pages/ward/update.ward";
+    }
+
+    @PostMapping("/admin/ward/{id}/edit")
+    public String updateWard(@PathVariable int id,
+                             @ModelAttribute("wardForm") Ward ward) {
+        ward.setIdWard(id);
+        wardService.saveWard(ward);
+        return "redirect:/admin/wards";
     }
 }

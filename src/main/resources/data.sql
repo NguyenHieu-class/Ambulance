@@ -10,13 +10,22 @@ INSERT INTO roles (id_role, name, description) VALUES
 INSERT INTO province (id_province, name_province, zip_code, img_province, create_date, update_date) VALUES
   (1, 'Sample Province', 10000, 'province.png', NOW(), NOW());
 
+INSERT INTO province (id_province, name_province, zip_code, img_province, create_date, update_date) VALUES
+  (2, 'Second Province', 20000, 'province2.png', NOW(), NOW());
+
 -- Districts
 INSERT INTO district (id_district, name_district, create_date, update_date, id_province) VALUES
   (1, 'Sample District', NOW(), NOW(), 1);
 
+INSERT INTO district (id_district, name_district, create_date, update_date, id_province) VALUES
+  (2, 'Second District', NOW(), NOW(), 2);
+
 -- Wards
 INSERT INTO ward (id_ward, name_ward, create_date, update_date, id_district) VALUES
   (1, 'Sample Ward', NOW(), NOW(), 1);
+
+INSERT INTO ward (id_ward, name_ward, create_date, update_date, id_district) VALUES
+  (2, 'Second Ward', NOW(), NOW(), 2);
 
 -- Brand of ambulances
 INSERT INTO brand_ambulance (id_brand, name_brand, create_date, update_date) VALUES
