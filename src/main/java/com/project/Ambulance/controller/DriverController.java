@@ -1,10 +1,12 @@
 package com.project.Ambulance.controller;
 
 import com.project.Ambulance.model.Driver;
+import com.project.Ambulance.model.User;
 import com.project.Ambulance.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -67,19 +69,26 @@ public class DriverController {
 
     // === DRIVER APIs ===
 
-    @GetMapping("/driver/profile/{id}")
-    public ResponseEntity<Driver> getProfile(@PathVariable int id) {
-        Driver driver = driverService.getDriverById(id);
+    @GetMapping("/driver/profile")
+    public ResponseEntity<Driver> getProfile(HttpSession session) {
+        User loggedIn = (User) session.getAttribute("loggedInUser");
+        if (loggedIn == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Driver driver = driverService.getDriverById(loggedIn.getIdUser());
         if (driver == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(driver);
     }
 
-    @PutMapping("/driver/profile/{id}")
-    public ResponseEntity<Driver> updateProfile(@PathVariable int id,
-                                                @RequestBody Driver driver) {
-        driver.setIdDriver(id);
+    @PutMapping("/driver/profile")
+    public ResponseEntity<Driver> updateProfile(@RequestBody Driver driver, HttpSession session) {
+        User loggedIn = (User) session.getAttribute("loggedInUser");
+        if (loggedIn == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        driver.setIdDriver(loggedIn.getIdUser());
         Driver updated = driverService.saveDriver(driver);
         return ResponseEntity.ok(updated);
     }
