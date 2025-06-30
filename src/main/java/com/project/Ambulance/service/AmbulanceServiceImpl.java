@@ -2,6 +2,7 @@ package com.project.Ambulance.service;
 
 import com.project.Ambulance.model.Ambulance;
 import com.project.Ambulance.repository.AmbulanceRepository;
+import com.project.Ambulance.constants.FieldName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +76,6 @@ public class AmbulanceServiceImpl implements AmbulanceService {
 
     @Override
     public List<Ambulance> getAvailableAmbulancesWithMedicalEquipment() {
-        return ambulanceRepository.findByMedicalEquipmentTrueAndStatusOrderByNameAsc(0); // 0 = hoạt động
+        return ambulanceRepository.findByMedicalEquipmentTrueAndStatusOrderByNameAsc(FieldName.AMBULANCE_STATUS_ACTIVE);
     }
 }
