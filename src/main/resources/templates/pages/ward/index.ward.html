@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Wards</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div th:replace="~{layout/header :: header}"></div>
+<div class="d-flex">
+    <div th:replace="~{layout/sidebar :: sidebar}"></div>
+    <div class="flex-fill p-3">
+        <h2>Quản lý phường</h2>
+        <table class="table table-bordered mt-3">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên phường</th>
+                <th>Huyện</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="w : ${wards}">
+                <td th:text="${w.idWard}"></td>
+                <td th:text="${w.nameWard}"></td>
+                <td th:text="${w.district.nameDistrict}"></td>
+                <td>
+                    <a th:href="@{'/admin/ward/' + ${w.idWard} + '/edit'}" class="btn btn-sm btn-secondary me-1">Sửa</a>
+                    <a th:href="@{'/admin/ward/' + ${w.idWard} + '/delete'}" class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/admin/ward/add}" class="btn btn-primary mt-3">Thêm phường</a>
+    </div>
+</div>
+<div th:replace="~{layout/footer :: footer}"></div>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>
